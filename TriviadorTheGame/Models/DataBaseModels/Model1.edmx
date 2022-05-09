@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище TriviadorTheGameDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="QUESTION_ID" />
+          </Key>
+          <Property Name="QUESTION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QUESTION_TEXT" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="RIGHT_ANSWER" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="FIRST_WRONG_ANSWER" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="FIRST_SECOND_ANSWER" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="FIRST_THIRD_ANSWER" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="CREATOR_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="QuestionsPack">
+          <Key>
+            <PropertyRef Name="QUESTIONS_PACK_ID" />
+          </Key>
+          <Property Name="QUESTIONS_PACK_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QUESTIONS_PACK_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CREATOR_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="QuestionsToPack">
+          <Key>
+            <PropertyRef Name="QUESTION_TO_PACK_ID" />
+          </Key>
+          <Property Name="QUESTION_TO_PACK_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QUESTION_ID" Type="int" />
+          <Property Name="QUESTION_PACK_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_LOGIN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="USER_PASSWORD" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="USER_ROLE" Type="nchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="UserStatistics">
+          <Key>
+            <PropertyRef Name="STATISTICS_ID" />
+          </Key>
+          <Property Name="STATISTICS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_ID" Type="int" />
+          <Property Name="SCORE_NUMBER" Type="int" />
+          <Property Name="GAMES_NUMBER" Type="int" />
+        </EntityType>
+        <Association Name="FK__Questions__CREAT__2C3393D0">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="CREATOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__CREAT__2F10007B">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="QuestionsPack" Type="Self.QuestionsPack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="QuestionsPack">
+              <PropertyRef Name="CREATOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__QUEST__31EC6D26">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
+          <End Role="QuestionsToPack" Type="Self.QuestionsToPack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="QUESTION_ID" />
+            </Principal>
+            <Dependent Role="QuestionsToPack">
+              <PropertyRef Name="QUESTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__QUEST__32E0915F">
+          <End Role="QuestionsPack" Type="Self.QuestionsPack" Multiplicity="0..1" />
+          <End Role="QuestionsToPack" Type="Self.QuestionsToPack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionsPack">
+              <PropertyRef Name="QUESTIONS_PACK_ID" />
+            </Principal>
+            <Dependent Role="QuestionsToPack">
+              <PropertyRef Name="QUESTION_PACK_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserStati__USER___276EDEB3">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="UserStatistics" Type="Self.UserStatistics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="UserStatistics">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище TriviadorTheGameDBModelContainer">
+          <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionsPack" EntityType="Self.QuestionsPack" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionsToPack" EntityType="Self.QuestionsToPack" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserStatistics" EntityType="Self.UserStatistics" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Questions__CREAT__2C3393D0" Association="Self.FK__Questions__CREAT__2C3393D0">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__CREAT__2F10007B" Association="Self.FK__Questions__CREAT__2F10007B">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="QuestionsPack" EntitySet="QuestionsPack" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__QUEST__31EC6D26" Association="Self.FK__Questions__QUEST__31EC6D26">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="QuestionsToPack" EntitySet="QuestionsToPack" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__QUEST__32E0915F" Association="Self.FK__Questions__QUEST__32E0915F">
+            <End Role="QuestionsPack" EntitySet="QuestionsPack" />
+            <End Role="QuestionsToPack" EntitySet="QuestionsToPack" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserStati__USER___276EDEB3" Association="Self.FK__UserStati__USER___276EDEB3">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserStatistics" EntitySet="UserStatistics" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TriviadorTheGameDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QUESTION_ID" />
+          </Key>
+          <Property Name="QUESTION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QUESTION_TEXT" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RIGHT_ANSWER" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FIRST_WRONG_ANSWER" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FIRST_SECOND_ANSWER" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FIRST_THIRD_ANSWER" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CREATOR_ID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Questions__CREAT__2C3393D0" FromRole="Questions" ToRole="Users" />
+          <NavigationProperty Name="QuestionsToPacks" Relationship="Self.FK__Questions__QUEST__31EC6D26" FromRole="Questions" ToRole="QuestionsToPack" />
+        </EntityType>
+        <EntityType Name="QuestionsPack">
+          <Key>
+            <PropertyRef Name="QUESTIONS_PACK_ID" />
+          </Key>
+          <Property Name="QUESTIONS_PACK_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QUESTIONS_PACK_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CREATOR_ID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Questions__CREAT__2F10007B" FromRole="QuestionsPack" ToRole="Users" />
+          <NavigationProperty Name="QuestionsToPacks" Relationship="Self.FK__Questions__QUEST__32E0915F" FromRole="QuestionsPack" ToRole="QuestionsToPack" />
+        </EntityType>
+        <EntityType Name="QuestionsToPack">
+          <Key>
+            <PropertyRef Name="QUESTION_TO_PACK_ID" />
+          </Key>
+          <Property Name="QUESTION_TO_PACK_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QUESTION_ID" Type="Int32" />
+          <Property Name="QUESTION_PACK_ID" Type="Int32" />
+          <NavigationProperty Name="Question" Relationship="Self.FK__Questions__QUEST__31EC6D26" FromRole="QuestionsToPack" ToRole="Questions" />
+          <NavigationProperty Name="QuestionsPack" Relationship="Self.FK__Questions__QUEST__32E0915F" FromRole="QuestionsToPack" ToRole="QuestionsPack" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_LOGIN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="USER_PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="USER_ROLE" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK__Questions__CREAT__2C3393D0" FromRole="Users" ToRole="Questions" />
+          <NavigationProperty Name="QuestionsPacks" Relationship="Self.FK__Questions__CREAT__2F10007B" FromRole="Users" ToRole="QuestionsPack" />
+          <NavigationProperty Name="UserStatistics" Relationship="Self.FK__UserStati__USER___276EDEB3" FromRole="Users" ToRole="UserStatistics" />
+        </EntityType>
+        <EntityType Name="UserStatistic">
+          <Key>
+            <PropertyRef Name="STATISTICS_ID" />
+          </Key>
+          <Property Name="STATISTICS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_ID" Type="Int32" />
+          <Property Name="SCORE_NUMBER" Type="Int32" />
+          <Property Name="GAMES_NUMBER" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK__UserStati__USER___276EDEB3" FromRole="UserStatistics" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK__Questions__CREAT__2C3393D0">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Questions" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="CREATOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__QUEST__31EC6D26">
+          <End Role="Questions" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="QuestionsToPack" Type="Self.QuestionsToPack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="QUESTION_ID" />
+            </Principal>
+            <Dependent Role="QuestionsToPack">
+              <PropertyRef Name="QUESTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__CREAT__2F10007B">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="QuestionsPack" Type="Self.QuestionsPack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="QuestionsPack">
+              <PropertyRef Name="CREATOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__QUEST__32E0915F">
+          <End Role="QuestionsPack" Type="Self.QuestionsPack" Multiplicity="0..1" />
+          <End Role="QuestionsToPack" Type="Self.QuestionsToPack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionsPack">
+              <PropertyRef Name="QUESTIONS_PACK_ID" />
+            </Principal>
+            <Dependent Role="QuestionsToPack">
+              <PropertyRef Name="QUESTION_PACK_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserStati__USER___276EDEB3">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserStatistics" Type="Self.UserStatistic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="UserStatistics">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TriviadorTheGameDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="QuestionsPacks" EntityType="Self.QuestionsPack" />
+          <EntitySet Name="QuestionsToPacks" EntityType="Self.QuestionsToPack" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserStatistics" EntityType="Self.UserStatistic" />
+          <AssociationSet Name="FK__Questions__CREAT__2C3393D0" Association="Self.FK__Questions__CREAT__2C3393D0">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__QUEST__31EC6D26" Association="Self.FK__Questions__QUEST__31EC6D26">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="QuestionsToPack" EntitySet="QuestionsToPacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__CREAT__2F10007B" Association="Self.FK__Questions__CREAT__2F10007B">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="QuestionsPack" EntitySet="QuestionsPacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__QUEST__32E0915F" Association="Self.FK__Questions__QUEST__32E0915F">
+            <End Role="QuestionsPack" EntitySet="QuestionsPacks" />
+            <End Role="QuestionsToPack" EntitySet="QuestionsToPacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserStati__USER___276EDEB3" Association="Self.FK__UserStati__USER___276EDEB3">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserStatistics" EntitySet="UserStatistics" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TriviadorTheGameDBModelContainer" CdmEntityContainer="TriviadorTheGameDBEntities">
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="TriviadorTheGameDBModel.Question">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+                <ScalarProperty Name="QUESTION_TEXT" ColumnName="QUESTION_TEXT" />
+                <ScalarProperty Name="RIGHT_ANSWER" ColumnName="RIGHT_ANSWER" />
+                <ScalarProperty Name="FIRST_WRONG_ANSWER" ColumnName="FIRST_WRONG_ANSWER" />
+                <ScalarProperty Name="FIRST_SECOND_ANSWER" ColumnName="FIRST_SECOND_ANSWER" />
+                <ScalarProperty Name="FIRST_THIRD_ANSWER" ColumnName="FIRST_THIRD_ANSWER" />
+                <ScalarProperty Name="CREATOR_ID" ColumnName="CREATOR_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionsPacks">
+            <EntityTypeMapping TypeName="TriviadorTheGameDBModel.QuestionsPack">
+              <MappingFragment StoreEntitySet="QuestionsPack">
+                <ScalarProperty Name="QUESTIONS_PACK_ID" ColumnName="QUESTIONS_PACK_ID" />
+                <ScalarProperty Name="QUESTIONS_PACK_NAME" ColumnName="QUESTIONS_PACK_NAME" />
+                <ScalarProperty Name="CREATOR_ID" ColumnName="CREATOR_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionsToPacks">
+            <EntityTypeMapping TypeName="TriviadorTheGameDBModel.QuestionsToPack">
+              <MappingFragment StoreEntitySet="QuestionsToPack">
+                <ScalarProperty Name="QUESTION_TO_PACK_ID" ColumnName="QUESTION_TO_PACK_ID" />
+                <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+                <ScalarProperty Name="QUESTION_PACK_ID" ColumnName="QUESTION_PACK_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TriviadorTheGameDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="USER_LOGIN" ColumnName="USER_LOGIN" />
+                <ScalarProperty Name="USER_PASSWORD" ColumnName="USER_PASSWORD" />
+                <ScalarProperty Name="USER_ROLE" ColumnName="USER_ROLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserStatistics">
+            <EntityTypeMapping TypeName="TriviadorTheGameDBModel.UserStatistic">
+              <MappingFragment StoreEntitySet="UserStatistics">
+                <ScalarProperty Name="STATISTICS_ID" ColumnName="STATISTICS_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="SCORE_NUMBER" ColumnName="SCORE_NUMBER" />
+                <ScalarProperty Name="GAMES_NUMBER" ColumnName="GAMES_NUMBER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

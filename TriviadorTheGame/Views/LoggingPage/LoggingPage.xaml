@@ -1,0 +1,144 @@
+﻿<Page x:Class="TriviadorTheGame.Views.LoggingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:viewModels="clr-namespace:TriviadorTheGame.ViewModels"
+
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="LoggingPage"
+
+      FontFamily="{StaticResource Medieval}">
+
+<Page.DataContext>
+    <viewModels:LoggingPageViewModel/>
+</Page.DataContext>
+    
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../../Resources/Images/1593821081_3-p-srednevekovie-foni-3.jpg" Opacity="0.8">
+            </ImageBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="271*" />
+            <ColumnDefinition Width="529*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row="0" Source="../../Resources/Images/i.webp" Stretch="Fill" Grid.ColumnSpan="2"></Image>
+
+        <Image Grid.Row="2" Source="../../Resources/Images/i.webp" Stretch="Fill" Grid.ColumnSpan="2"></Image>
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1.5*" />
+            </Grid.ColumnDefinitions>
+
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+
+                <Border Margin="10 10 0  0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                        CornerRadius="5" BorderThickness="3px" BorderBrush="#7c664c">
+
+                    <Viewbox Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                        <TextBlock TextTrimming="WordEllipsis" MaxWidth="300px" x:Name="WelcomeBlock"
+                                   VerticalAlignment="Stretch"
+                                   FontSize="20px" HorizontalAlignment="Stretch" Grid.Row="0" TextWrapping="Wrap"
+                                   TextAlignment="Justify" Padding="5px" Background="AntiqueWhite"
+                                   Text="Добро Пожаловать в Тривиадор! Испытайте свои знания , навыки и стратегию!" />
+
+
+                    </Viewbox>
+                </Border>
+
+
+                <Viewbox Grid.Row="1">
+                    <Image Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                       Source="../../Resources/Images/kisspng-royalty-free-stock-photography-clip-art-5ae4fc27ab2ee7.2109463115249561997012.png">
+                </Image>
+                </Viewbox>
+
+
+            </Grid>
+
+            <Viewbox Grid.Column="2">
+                <StackPanel  Margin="20 0 10 0"  Background="Transparent" Grid.Column="2" HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+
+         
+                    <ToggleButton
+                    Style="{StaticResource MaterialDesignActionToggleButton}"
+                    ToolTip="MaterialDesignActionLightToggleButton"
+                    Content="Регистрация"
+                    Width="150px"
+                    Background="AntiqueWhite"
+                    Click="ToggleButton_OnChecked"
+                    materialDesign:ToggleButtonAssist.OnContent="Вход"
+                    FontSize="25px"
+                    Foreground="Black"
+                    Margin="0 20 0 0 " />
+
+                <TextBlock VerticalAlignment="Stretch" Background="Transparent" FontSize="30px" Text="Login"></TextBlock>
+
+                    <TextBox        Width="200px" FontSize="20px" Height="30px" Background="AntiqueWhite">
+
+                </TextBox>
+
+                <TextBlock FontFamily="{StaticResource Medieval}" Background="Transparent" FontSize="30px"
+                           Text="Password">
+                </TextBlock>
+
+                    <TextBox Width="200px"  FontSize="20px" Height="30px" Background="AntiqueWhite">
+                </TextBox>
+
+
+                <TextBlock x:Name="ConfirmPasswordTextBlock" FontFamily="{StaticResource Medieval}"
+                           Background="Transparent" FontSize="30px"
+                           Text="Confirm Password">
+                </TextBlock>
+
+                    <TextBox Width="200px"  x:Name="ConfirmPasswordTextBox" FontSize="20px" Height="30px" Background="AntiqueWhite">
+                </TextBox>
+
+
+                <Grid VerticalAlignment="Stretch" Margin="0 20 0 0 ">
+                        <Button  Width="200px"  Command="{Binding OpenMainMenu}"  Height="50px"
+                        Foreground="Tomato"
+                        Background="AntiqueWhite"
+                        Style="{StaticResource MaterialDesignRaisedLightButton}">
+                        <TextBlock
+                            FontSize="35px"
+                            Text="Confirm" />
+                    </Button>
+                </Grid>
+
+
+            </StackPanel>
+            </Viewbox>
+
+
+        </Grid>
+
+
+    </Grid>
+
+</Page>
