@@ -80,17 +80,16 @@
 
                 <TabControl.ContentTemplate>
                     <DataTemplate>
-
-                        <DockPanel Background="#8e6847">
-
+                        
                             <DataGrid
                                 Background="#ceb97a"
+                                SelectedItem="{Binding Path=SelectedItem}"
                                 ItemsSource="{Binding Questions}"
-                                FontSize="17px"
+                                FontSize="17"
                                 IsReadOnly="True"
                                 SelectionUnit="FullRow" />
-
-                        </DockPanel>
+                        
+                 
 
                     </DataTemplate>
                 </TabControl.ContentTemplate>

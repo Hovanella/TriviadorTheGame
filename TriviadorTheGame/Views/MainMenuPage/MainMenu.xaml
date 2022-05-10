@@ -108,6 +108,7 @@
 
                     </Button>
                     <Button
+                        Command="{Binding OpenAboutGamePage}"
                         Margin="0 0 0 20"
                         Background="#94671f"
                         Foreground="White"
@@ -135,7 +136,7 @@
 
                     </Button>
                     <Button
-                      
+                       Command="{Binding ExitCommand}"
                         Margin="0 0 0 20"
                         Background="#94671f"
                         BorderThickness="2px"
@@ -168,7 +169,7 @@
                 </Grid.ColumnDefinitions>
 
 
-                <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <ToggleButton
                         Style="{StaticResource MaterialDesignActionToggleButton}"
                         ToolTip="MaterialDesignActionLightToggleButton">
@@ -179,6 +180,9 @@
                             <Image Source="../../Resources/Images/russia.png"></Image>
                         </ToggleButton.Content>
                     </ToggleButton>
+                    <Image Width="40px" Height="40px"  Source="{Binding RoleImage}"/>
+                      
+                    
                 </StackPanel>
             </Grid>
 

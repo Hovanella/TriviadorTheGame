@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using TriviadorTheGame.Models.DataBaseModels;
 
 namespace TriviadorTheGame.Views.RedactorPage
 {
@@ -7,11 +9,11 @@ namespace TriviadorTheGame.Views.RedactorPage
         public string Name { get; set; }
    
 
-        public List<Question> Questions { get; set; }
+        public ObservableCollection<Question> Questions { get; set; }
 
        
        
-        public QuestionPack(string name, List<Question> questions)
+        public QuestionPack(string name, ObservableCollection<Question> questions)
         {
             Name = name;
          

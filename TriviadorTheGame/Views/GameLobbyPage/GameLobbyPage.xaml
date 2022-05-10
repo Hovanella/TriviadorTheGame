@@ -5,11 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:TriviadorTheGame.Views.GameLobbyPage"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:viewModels="clr-namespace:TriviadorTheGame.ViewModels"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GameLobbyPage"
       FontFamily="{StaticResource Medieval}">   
 
+    <Page.DataContext>
+        <viewModels:GameLobbyViewModel/>
+    </Page.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="4*" />
@@ -90,7 +95,8 @@
                                     <GradientStop Color="#FFB58C5B" Offset="0.228" />
                                 </LinearGradientBrush>
                             </StackPanel.Background>
-                            <TextBlock Padding="10px" Text="Игрок1 : Не опознан" FontSize="50px" Foreground="White"></TextBlock>
+                            <TextBlock Padding="10px" Text="{Binding HostUser.USER_LOGIN, Mode=TwoWay  }" FontSize="50px" Foreground="White"></TextBlock>
+                            
 
                             <ToggleButton Visibility="Hidden"
                                           HorizontalAlignment="Left"
@@ -218,7 +224,6 @@
             <Viewbox Grid.Column="1" Stretch="Fill">
                 <Grid Grid.Column="1">
                     <Button
-                        Click="ButtonBase_OnClick"
                         BorderThickness="2px"
                         VerticalAlignment="Stretch"
                         Width="250px"

@@ -12,10 +12,10 @@
 
       FontFamily="{StaticResource Medieval}">
 
-<Page.DataContext>
-    <viewModels:LoggingPageViewModel/>
-</Page.DataContext>
-    
+    <Page.DataContext>
+        <viewModels:LoggingPageViewModel />
+    </Page.DataContext>
+
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="../../Resources/Images/1593821081_3-p-srednevekovie-foni-3.jpg" Opacity="0.8">
@@ -73,66 +73,73 @@
 
                 <Viewbox Grid.Row="1">
                     <Image Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Stretch"
-                       Source="../../Resources/Images/kisspng-royalty-free-stock-photography-clip-art-5ae4fc27ab2ee7.2109463115249561997012.png">
-                </Image>
+                           Source="../../Resources/Images/kisspng-royalty-free-stock-photography-clip-art-5ae4fc27ab2ee7.2109463115249561997012.png">
+                    </Image>
                 </Viewbox>
 
 
             </Grid>
 
             <Viewbox Grid.Column="2">
-                <StackPanel  Margin="20 0 10 0"  Background="Transparent" Grid.Column="2" HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
+                <StackPanel Margin="20 0 10 0" Background="Transparent" Grid.Column="2" HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
 
-         
+
                     <ToggleButton
-                    Style="{StaticResource MaterialDesignActionToggleButton}"
-                    ToolTip="MaterialDesignActionLightToggleButton"
-                    Content="Регистрация"
-                    Width="150px"
-                    Background="AntiqueWhite"
-                    Click="ToggleButton_OnChecked"
-                    materialDesign:ToggleButtonAssist.OnContent="Вход"
-                    FontSize="25px"
-                    Foreground="Black"
-                    Margin="0 20 0 0 " />
-
-                <TextBlock VerticalAlignment="Stretch" Background="Transparent" FontSize="30px" Text="Login"></TextBlock>
-
-                    <TextBox        Width="200px" FontSize="20px" Height="30px" Background="AntiqueWhite">
-
-                </TextBox>
-
-                <TextBlock FontFamily="{StaticResource Medieval}" Background="Transparent" FontSize="30px"
-                           Text="Password">
-                </TextBlock>
-
-                    <TextBox Width="200px"  FontSize="20px" Height="30px" Background="AntiqueWhite">
-                </TextBox>
-
-
-                <TextBlock x:Name="ConfirmPasswordTextBlock" FontFamily="{StaticResource Medieval}"
-                           Background="Transparent" FontSize="30px"
-                           Text="Confirm Password">
-                </TextBlock>
-
-                    <TextBox Width="200px"  x:Name="ConfirmPasswordTextBox" FontSize="20px" Height="30px" Background="AntiqueWhite">
-                </TextBox>
-
-
-                <Grid VerticalAlignment="Stretch" Margin="0 20 0 0 ">
-                        <Button  Width="200px"  Command="{Binding OpenMainMenu}"  Height="50px"
-                        Foreground="Tomato"
+                        Style="{StaticResource MaterialDesignActionToggleButton}"
+                        ToolTip="MaterialDesignActionLightToggleButton"
+                        Content="Регистрация"
+                        IsChecked="{Binding IsRegistered, Mode=TwoWay}"
+                        Width="150px"
                         Background="AntiqueWhite"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}">
-                        <TextBlock
-                            FontSize="35px"
-                            Text="Confirm" />
-                    </Button>
-                </Grid>
+                        Click="ToggleButton_OnChecked"
+                        materialDesign:ToggleButtonAssist.OnContent="Вход"
+                        FontSize="25px"
+                        Foreground="Black"
+                        Margin="0 20 0 0 " />
+
+                    <TextBlock VerticalAlignment="Stretch" Background="Transparent" FontSize="30px" Text="Login">
+                        
+                    </TextBlock>
+
+                    <TextBox Text="{Binding Login, Mode=TwoWay}" Width="200px" FontSize="20px" Height="30px"
+                             Background="AntiqueWhite">
+
+                    </TextBox>
+
+                    <TextBlock Background="Transparent" FontSize="30px"
+                               Text="Password">
+                    </TextBlock>
+
+                    <TextBox Text="{Binding Password, Mode=TwoWay}" Width="200px" FontSize="20px" Height="30px"
+                             Background="AntiqueWhite">
+                    </TextBox>
 
 
-            </StackPanel>
+                    <TextBlock x:Name="ConfirmPasswordTextBlock" FontFamily="{StaticResource Medieval}"
+                               Background="Transparent" FontSize="30px"
+                               Text="Confirm Password">
+                    </TextBlock>
+
+                    <TextBox Text="{Binding ConfirmPassword, Mode=TwoWay}" Width="200px"
+                             x:Name="ConfirmPasswordTextBox" FontSize="20px" Height="30px"
+                             Background="AntiqueWhite">
+                    </TextBox>
+
+
+                    <Grid VerticalAlignment="Stretch" Margin="0 20 0 0 ">
+                        <Button Width="200px" Command="{Binding OpenMainMenu}" Height="50px"
+                                Foreground="Tomato"
+                                Background="AntiqueWhite"
+                                Style="{StaticResource MaterialDesignRaisedLightButton}">
+                            <TextBlock
+                                FontSize="35px"
+                                Text="Confirm" />
+                        </Button>
+                    </Grid>
+
+
+                </StackPanel>
             </Viewbox>
 
 

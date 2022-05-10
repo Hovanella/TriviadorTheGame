@@ -100,6 +100,14 @@
     <Compile Include="Models\DataBaseModels\QuestionsToPack.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataBaseModels\Repositories\IQuestionPackRepository.cs" />
+    <Compile Include="Models\DataBaseModels\Repositories\IQuestionRepository.cs" />
+    <Compile Include="Models\DataBaseModels\Repositories\IRepository.cs" />
+    <Compile Include="Models\DataBaseModels\Repositories\IUsersRepository.cs" />
+    <Compile Include="Models\DataBaseModels\Repositories\QuestionPackRepository.cs" />
+    <Compile Include="Models\DataBaseModels\Repositories\QuestionRepository.cs" />
+    <Compile Include="Models\DataBaseModels\Repositories\UserRepository.cs" />
+    <Compile Include="Models\DataBaseModels\UnitOfWork.cs" />
     <Compile Include="Models\DataBaseModels\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -107,10 +115,10 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Navigation.cs" />
-    <Compile Include="Models\Question.cs" />
     <Compile Include="Models\QuestionPack.cs" />
     <Compile Include="ViewModels\BaseViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel\RelayCommand.cs" />
+    <Compile Include="ViewModels\GameLobbyViewModel.cs" />
     <Compile Include="ViewModels\LoggingPageViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -154,7 +162,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fonts\Medieval English Normal.ttf" />
+    <Resource Include="Resources\Images\user.png" />
+    <Resource Include="Resources\Images\manager.png" />
+    <Resource Include="Resources\Sounds\MORGENSHTERN - Pablo.mp3" />
+    <Resource Include="Resources\Sounds\jesse-hopkins-mandb-title-theme.mp3" />
+    <Resource Include="Fonts\Medieval English Normal.ttf" />
     <Resource Include="Resources\Images\1593821081_3-p-srednevekovie-foni-3.jpg" />
     <Resource Include="Resources\Images\1613661545_51-p-fon-dlya-prezentatsii-petr-1-55.jpg" />
     <Resource Include="Resources\Images\1616523194_57-p-fon-dlya-prezentatsii-staraya-bumaga-59.jpg" />
@@ -183,7 +195,6 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Content Include="Resources\Sounds\20220505_090106.m4a" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Resources\Styles\ButtonsStyle.xaml" />

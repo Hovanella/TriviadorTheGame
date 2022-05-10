@@ -25,9 +25,6 @@ namespace TriviadorTheGame.Views.GameLobbyPage
             InitializeComponent();
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new GameplayPage.GameplayPage());
-        }
+    
     }
 }
