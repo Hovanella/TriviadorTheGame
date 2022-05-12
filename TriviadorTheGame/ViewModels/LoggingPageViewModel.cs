@@ -21,8 +21,8 @@ namespace TriviadorTheGame.ViewModels
             IsRegistered = false;
             OnPropertyChanged();
 
-            Login = string.Empty;
-            Password = string.Empty;
+            Login = "Test";
+            Password = "Test";
             ModelViewManager.LoggingPageViewModel = this;
 
 
@@ -41,11 +41,20 @@ namespace TriviadorTheGame.ViewModels
                 }
 
                 if (UnitOfWork.UserRepository.CurrentUser.USER_ROLE == "A")
+                {
                     ModelViewManager.MainMenuViewModel.SetRoleImage(
                         new BitmapImage(new Uri("../../Resources/Images/manager.png", UriKind.Relative)));
+                    ModelViewManager.RedactorViewModel.IsNotAdmin = false;
+                    ModelViewManager.RedactorViewModel.CanEdit = true;
+                }
+
                 else
+                {
+                    ModelViewManager.RedactorViewModel.IsNotAdmin = true;
+                    ModelViewManager.RedactorViewModel.CanEdit = false;
                     ModelViewManager.MainMenuViewModel.SetRoleImage(
                         new BitmapImage(new Uri("../../Resources/Images/user.png", UriKind.Relative)));
+                }
 
 
                 ModelViewManager.MainWindowViewModel.CurrentPage = Navigation.Pages["MainMenuPage"];

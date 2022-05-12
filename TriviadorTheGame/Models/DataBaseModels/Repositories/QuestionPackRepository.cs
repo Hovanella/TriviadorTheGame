@@ -34,7 +34,6 @@ namespace TriviadorTheGame.ViewModels
 
         public IEnumerable<QuestionPack> GetAllPacksWithQuestions()
         {
-            
             var packs =
                 (from p in _context.QuestionsPacks
                     join s in _context.QuestionsToPacks on p.QUESTIONS_PACK_ID equals s.QUESTION_PACK_ID
@@ -53,7 +52,7 @@ namespace TriviadorTheGame.ViewModels
                 ?.QUESTIONS_PACK_NAME;
 
 
-            var pack = new QuestionPack(questionPackName,
+            var pack = new QuestionPack(questionPackId, questionPackName,
                 new ObservableCollection<Question>()
                     { _context.Questions.FirstOrDefault(x => x.QUESTION_ID == questionPackId) });
 
@@ -72,7 +71,7 @@ namespace TriviadorTheGame.ViewModels
                     result.Add(pack);
                     questionPackName = _context.QuestionsPacks
                         .FirstOrDefault(x => x.QUESTIONS_PACK_ID == currentQuestionPackId)?.QUESTIONS_PACK_NAME;
-                    pack = new QuestionPack(questionPackName,
+                    pack = new QuestionPack(currentQuestionPackId, questionPackName,
                         new ObservableCollection<Question>()
                             { _context.Questions.FirstOrDefault(x => x.QUESTION_ID == currentQuestionId) });
                     previousQuestionPackId = currentQuestionPackId;
@@ -82,6 +81,39 @@ namespace TriviadorTheGame.ViewModels
             result.Add(pack);
 
             return result;
+        }
+
+        public void Update()
+        {
+            _context.SaveChanges();
+        }
+
+        public void DeleteQuestionFromPackById(int questionQuestionId, int questionPackId)
+        {
+            var QuestionToPack = _context.QuestionsToPacks.FirstOrDefault(x =>
+                x.QUESTION_ID == questionQuestionId && x.QUESTION_PACK_ID == questionPackId);
+            if (QuestionToPack == null) return;
+            _context.QuestionsToPacks.Remove(QuestionToPack);
+            _context.SaveChanges();
+        }
+        
+        
+
+        public void AddQuestionToPack(Question newQuestion, QuestionPack questionPack)
+        {
+            var questionPackId = _context.QuestionsPacks.FirstOrDefault(x => x.QUESTIONS_PACK_ID == questionPack.Id).QUESTIONS_PACK_ID;
+            
+            _context.QuestionsToPacks.Add(new QuestionsToPack()
+            {
+                QUESTION_ID = newQuestion.QUESTION_ID,
+                QUESTION_PACK_ID = questionPackId
+               
+            });
+        }
+
+        public QuestionsPack GetById(int id)
+        {
+            return _context.QuestionsPacks.FirstOrDefault(x=>x.QUESTIONS_PACK_ID== id);
         }
     }
 }

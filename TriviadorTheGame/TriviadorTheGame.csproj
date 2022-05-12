@@ -75,6 +75,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Interaction.cs" />
     <Compile Include="Models\DataBaseModels\DataBaseContext.cs" />
     <Compile Include="Models\DataBaseModels\Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -118,6 +119,7 @@
     <Compile Include="Models\QuestionPack.cs" />
     <Compile Include="ViewModels\BaseViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel\RelayCommand.cs" />
+    <Compile Include="ViewModels\CreatePackWindowViewModel.cs" />
     <Compile Include="ViewModels\GameLobbyViewModel.cs" />
     <Compile Include="ViewModels\LoggingPageViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />

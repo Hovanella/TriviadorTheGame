@@ -3,14 +3,136 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:TriviadorTheGame.ViewModels"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="CreatePackWindow" Height="250" Width="500"
+        Title="CreatePackWindow" Height="450" Width="700"
         WindowStartupLocation="CenterScreen"
-        >
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        BorderThickness="8px"
+        BorderBrush="#8e6847"
+       
+>
+    <Window.DataContext>
+        <viewModels:CreatePackWindowViewModel/>
+    </Window.DataContext>
     <Grid>
 
-     
-        
-        <TextBlock Text="dsadsadasd"></TextBlock>
+        <Grid.Background>
+            <ImageBrush ImageSource="../../Resources/Images/1593821081_3-p-srednevekovie-foni-3.jpg" Opacity="0.8">
+            </ImageBrush>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="57*"/>
+            <RowDefinition Height="143*"/>
+            <RowDefinition Height="50*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="87*"/>
+                <ColumnDefinition Width="325*"/>
+                <ColumnDefinition Width="88*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Row="0" Grid.Column="1"
+                     Margin="5,5,5,5"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                      FontSize="20px"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto"
+                     materialDesign:HintAssist.Hint="Question Text"
+                     Text="{Binding QuestionText, Mode=TwoWay}"
+                    
+                     IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60*"/>
+                <RowDefinition Height="83*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="141*"/>
+                    <ColumnDefinition Width="218*"/>
+                    <ColumnDefinition Width="141*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Row="0" Grid.Column="1"
+                     Margin="5,5,5,5"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     FontSize="20px"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto"
+                     materialDesign:HintAssist.Hint="Right Answer"
+                     Text="{Binding RightAnswer, Mode=TwoWay}"
+                     IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+
+
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Row="0" Grid.Column="0"
+                     Margin="5,5,5,5"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     FontSize="20px"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto"
+                     materialDesign:HintAssist.Hint="First Wrong Answer"
+                     Text="{Binding FirstWrongAnswer, Mode=TwoWay}"
+                     IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
+                <TextBox Grid.Row="0" Grid.Column="1"
+                     Margin="5,5,5,5"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                      Text="{Binding SecondWrongAnswer, Mode=TwoWay}"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto"
+                     materialDesign:HintAssist.Hint="Second Wrong Answer"
+                     FontSize="20px"
+                     IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
+                <TextBox Grid.Row="0" Grid.Column="2"
+                     Margin="5,5,5,5"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     FontSize="20px"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto"
+                     materialDesign:HintAssist.Hint="Third Wrong Answer"
+                     Text="{Binding ThirdWrongAnswer, Mode=TwoWay}"
+                    
+                     IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
+            </Grid>
+
+        </Grid>
+
+        <Button Grid.Row="6" VerticalAlignment="Stretch" 
+                Command="{Binding CloseCreatePackWindowCommand}"
+                HorizontalAlignment="Center" Margin="0 0 0 0"
+                    Height="50px"
+                    Foreground="Tomato"
+                    Background="AntiqueWhite"
+                 
+                    Style="{StaticResource MaterialDesignRaisedLightButton}">
+            <TextBlock
+                    FontSize="25px"
+                    Text="Создать новый пак" />
+        </Button>
+   
+
+
+
+
     </Grid>
 </Window>

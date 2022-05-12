@@ -6,9 +6,12 @@
       xmlns:local="clr-namespace:TriviadorTheGame.Views.RedactorPage"
       xmlns:viewModels="clr-namespace:TriviadorTheGame.ViewModels"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:triviadorTheGame="clr-namespace:TriviadorTheGame"
       mc:Ignorable="d"
-       Background="White"
-      FontFamily="{StaticResource Medieval}">
+      Background="White"
+      FontFamily="{StaticResource Medieval}"
+      x:Name="Root">
 
     <Page.DataContext>
         <viewModels:RedactorViewModel />
@@ -29,6 +32,7 @@
         <materialDesign:Card Grid.Column="0">
             <TabControl
                 ItemsSource="{Binding QuestionPacks}"
+                SelectedItem="{Binding SelectedQuestionPack}"
                 x:Name="Tabs"
                 Style="{StaticResource MaterialTabChanged}"
                 materialDesign:ColorZoneAssist.Background="#8e6847"
@@ -80,16 +84,36 @@
 
                 <TabControl.ContentTemplate>
                     <DataTemplate>
-                        
-                            <DataGrid
-                                Background="#ceb97a"
-                                SelectedItem="{Binding Path=SelectedItem}"
-                                ItemsSource="{Binding Questions}"
-                                FontSize="17"
-                                IsReadOnly="True"
-                                SelectionUnit="FullRow" />
-                        
-                 
+
+                        <DataGrid
+                            Background="#ceb97a"
+                            ItemsSource="{Binding Questions, Mode=TwoWay}"
+                            SelectedItem="{Binding DataContext.SelectedItem, ElementName=Root}"
+                            FontSize="17"
+                            CanUserAddRows="False"
+                            IsReadOnly="{Binding   DataContext.IsNotAdmin,ElementName=Root}"
+                            SelectionUnit="FullRow"
+                            >
+
+
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected"
+                                                 Value="True">
+                                            <Setter Property="BorderBrush"
+                                                    Value="Blue" />
+                                            <Setter Property="BorderThickness"
+                                                    Value="2" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.RowStyle>
+
+                          
+
+                        </DataGrid>
+
 
                     </DataTemplate>
                 </TabControl.ContentTemplate>
@@ -98,106 +122,118 @@
         </materialDesign:Card>
 
 
+        <Grid Grid.Column="1" Background="#8e6847">
 
-            <Grid Grid.Column="1"  Background="#8e6847" >
-                
-                <Grid.RowDefinitions>
-                    <RowDefinition  Height="1*" />
-                    <RowDefinition  Height="1*" />
-                    <RowDefinition  Height="1*" />
-                    <RowDefinition  Height="1*" />
-                    <RowDefinition  Height="1*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                </Grid.RowDefinitions>
-             
-         
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
 
-              
-             
-                    <TextBox Grid.Row="0"  HorizontalAlignment="Stretch"
-                        Margin="5px"
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                        VerticalAlignment="Stretch"
-                  
-                        AcceptsReturn="True"
-                        TextWrapping="Wrap"
-                        VerticalScrollBarVisibility="Auto"
-                        materialDesign:HintAssist.Hint="This is a text area"
-                        FontSize="20px"
-                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
-                    <TextBox Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                             Margin="5px"
-                             FontSize="20px"
-                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                          
-                             AcceptsReturn="True"
-                             TextWrapping="Wrap"
-                             VerticalScrollBarVisibility="Auto"
-                             materialDesign:HintAssist.Hint="This is a text area"
-                             IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
-                    <TextBox Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                             Margin="5px"
-                             FontSize="20px"
-                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                       
-                            
-                             AcceptsReturn="True"
-                             TextWrapping="Wrap"
-                             VerticalScrollBarVisibility="Auto"
-                             materialDesign:HintAssist.Hint="This is a text area"
-                     
-                             IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
-                    
-                    <TextBox Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                             Margin="5px"
-                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                             AcceptsReturn="True"
-                             TextWrapping="Wrap"
-                             VerticalScrollBarVisibility="Auto"
-                             materialDesign:HintAssist.Hint="Third wrong answer"
-                           
-                             FontSize="20px"
-                             IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
-          
+
+            <TextBox Grid.Row="0" HorizontalAlignment="Stretch"
+                     Margin="5px"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     VerticalAlignment="Stretch"
+
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto"
+                     materialDesign:HintAssist.Hint="This is a text area"
+                     FontSize="20px"
+                     IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
+            <TextBox Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                     Margin="5px"
+                     FontSize="20px"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto"
+                     materialDesign:HintAssist.Hint="This is a text area"
+                     IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
+            <TextBox Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                     Margin="5px"
+                     FontSize="20px"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+
+
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto"
+                     materialDesign:HintAssist.Hint="This is a text area"
+
+                     IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
+
+            <TextBox Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                     Margin="5px"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto"
+                     materialDesign:HintAssist.Hint="Third wrong answer"
+
+                     FontSize="20px"
+                     IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
+
+
+            <Viewbox Grid.Row="4">
+                <Button Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                        Command="{Binding Path=CreateNewPack}"
+                        Margin="0 15 0 0"
+                        Foreground="Tomato"
+                        Background="AntiqueWhite"
+                        
+                        Style="{StaticResource MaterialDesignRaisedLightButton}">
+                    <TextBlock
+                        FontSize="25px"
+                        Text="Создать вопрос" />
+                </Button>
+            </Viewbox>
+
+            <Button Grid.Row="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0 15 0 0"
+                    Height="50px"
+                    Foreground="Tomato"
+                    Background="AntiqueWhite"
+                    Command="{Binding OpenMainMenuPage}"
+                    Style="{StaticResource MaterialDesignRaisedLightButton}">
+                <TextBlock
+                    FontSize="25px"
+                    Text="Выйти в меню" />
+            </Button>
+
+            <Button Grid.Row="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0 0 0 0"
+                    Height="50px"
+                    Foreground="Tomato"
+                    Background="AntiqueWhite"
+                    Command="{Binding ChangeRightAnswer}"
+                    Style="{StaticResource MaterialDesignRaisedLightButton}">
+                <TextBlock
+                    FontSize="25px"
+                    Text="Создать новый пак" />
+            </Button>
             
-                
-                <Viewbox Grid.Row="4">
-                 <Button Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                         Command="{Binding Path=OpenCreatePackWindowCommand}"
-                         Margin="0 15 0 0" 
-                         Foreground="Tomato"
-                         Background="AntiqueWhite"
-                         Style="{StaticResource MaterialDesignRaisedLightButton}">
-                     <TextBlock
-                         FontSize="25px"
-                         Text="Создать вопрос" />
-                 </Button>
-                </Viewbox>
-                    
-                 <Button Grid.Row="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding OpenCreatePackWindowCommand}" Margin="0 15 0 0" Height="50px"
-                         Foreground="Tomato"
-                         Background="AntiqueWhite"
-                         Style="{StaticResource MaterialDesignRaisedLightButton}">
-                     <TextBlock
-                         FontSize="25px"
-                         Text="Редактировать вопрос" />
-                 </Button>
+            
+            <Button Grid.Row="7" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0 0 0 0"
+                    Height="50px"
+                    Command="{Binding DeleteSelectedQuestion}"
+                    Foreground="Tomato"
+                    Background="AntiqueWhite"
+                    Style="{StaticResource MaterialDesignRaisedLightButton}">
+                <TextBlock
+                    FontSize="25px"
+                    Text="Удалить выбранный вопрос" />
+            </Button>
+            
+            
 
-                 <Button Grid.Row="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding OpenCreatePackWindowCommand}" Margin="0 0 0 0" Height="50px"
-                         Foreground="Tomato"
-                         Background="AntiqueWhite"
-                         Style="{StaticResource MaterialDesignRaisedLightButton}">
-                     <TextBlock
-                         FontSize="25px"
-                         Text="Создать новый пак" />
-                 </Button>
- 
-              
 
-              
-            </Grid>
-
+        </Grid>
 
 
     </Grid>

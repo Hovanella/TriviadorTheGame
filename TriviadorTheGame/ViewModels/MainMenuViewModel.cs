@@ -6,6 +6,7 @@ using TriviadorTheGame.Models;
 using TriviadorTheGame.Models.DataBaseModels;
 using TriviadorTheGame.ViewModels.BaseViewModel;
 using TriviadorTheGame.Views;
+using TriviadorTheGame.Views.RedactorPage;
 
 namespace TriviadorTheGame.ViewModels
 {
@@ -27,7 +28,11 @@ namespace TriviadorTheGame.ViewModels
                 });
 
             OpenRedactorPage = new RelayCommand
-                (async () => { ModelViewManager.MainWindowViewModel.CurrentPage = Navigation.Pages["RedactorPage"]; });
+                (async () =>
+                {
+                    ModelViewManager.MainWindowViewModel.CurrentPage = Navigation.Pages["RedactorPage"];
+                  
+                });
 
             ExitCommand = new RelayCommand
                 (async () => { App.Current.Shutdown(); });
@@ -48,9 +53,7 @@ namespace TriviadorTheGame.ViewModels
         public RelayCommand OpenGameLobbyPage { get; set; }
         public RelayCommand OpenRedactorPage { get; set; }
         public RelayCommand ExitCommand { get; set; }
-        
         public ImageSource RoleImage { get; set; }
-
         public RelayCommand OpenAboutGamePage { get; set; }
     }
 }
