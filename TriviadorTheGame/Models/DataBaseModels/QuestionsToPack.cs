@@ -7,8 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using TriviadorTheGame.Views.RedactorPage;
-
 namespace TriviadorTheGame.Models.DataBaseModels
 {
     using System;
@@ -21,6 +19,6 @@ namespace TriviadorTheGame.Models.DataBaseModels
         public Nullable<int> QUESTION_PACK_ID { get; set; }
     
         public virtual Question Question { get; set; }
-        public virtual QuestionPack QuestionsPack { get; set; }
+        public virtual QuestionsPack QuestionsPack { get; set; }
     }
 }

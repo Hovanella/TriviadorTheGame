@@ -3,13 +3,11 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:TriviadorTheGame.Views.RedactorPage"
       xmlns:viewModels="clr-namespace:TriviadorTheGame.ViewModels"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
-      xmlns:triviadorTheGame="clr-namespace:TriviadorTheGame"
       mc:Ignorable="d"
       Background="White"
+      Focusable="False"
       FontFamily="{StaticResource Medieval}"
       x:Name="Root">
 
@@ -18,46 +16,53 @@
     </Page.DataContext>
 
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="../../Resources/Images/1593821081_3-p-srednevekovie-foni-3.jpg" Opacity="0.8">
-            </ImageBrush>
-        </Grid.Background>
+
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="4*" />
             <ColumnDefinition Width="1*" />
+       
+           
 
         </Grid.ColumnDefinitions>
+        
+     
+        
+        
 
-        <materialDesign:Card Grid.Column="0">
+        <!--<materialDesign:Card  materialDesign:ColorZoneAssist.Background="Transparent" Grid.Column="0">
             <TabControl
-                ItemsSource="{Binding QuestionPacks}"
-                SelectedItem="{Binding SelectedQuestionPack}"
-                x:Name="Tabs"
+                Name="TabControl"
+                Focusable="False"
+                ItemsSource="{Binding QuestionPackLists, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedQuestionPackList, Mode=TwoWay}"
+                
                 Style="{StaticResource MaterialTabChanged}"
-                materialDesign:ColorZoneAssist.Background="#8e6847"
                 TabStripPlacement="Left">
 
+                <TabControl.Background>
+                    <ImageBrush ImageSource="../../Resources/Images/QuestionsPackListBackground.jpg" />
+                </TabControl.Background>
                 <TabControl.Resources>
 
-                    <Style TargetType="TabItem">
-
+                    <Style  TargetType="TabItem">
+                        
                         <Setter Property="Template">
 
                             <Setter.Value>
-                                <ControlTemplate TargetType="TabItem">
+                                <ControlTemplate  TargetType="TabItem">
 
                                     <Border MaxWidth="400px" x:Name="Border" Background="#ceb97a"
                                             HorizontalAlignment="Stretch"
                                             VerticalAlignment="Center" Padding="5px" Margin="5px"
                                             Cursor="Hand" CornerRadius="10" BorderThickness="2px" BorderBrush="Black">
 
-                                        <TextBlock MaxWidth="400px" Height="55" TextTrimming="CharacterEllipsis"
+                                        <TextBlock  MaxWidth="400px" Height="55" TextTrimming="CharacterEllipsis"
                                                    FontSize="20px" Padding="20" x:Name="Text" Focusable="False">
                                             <TextBlock.Text>
-                                                <MultiBinding UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"
-                                                              StringFormat="{}{0}( Questions: {1} ) ">
-                                                    <Binding Path="Name" />
+                                                <MultiBinding  UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"
+                                                              StringFormat="{}{0}({1}) ">
+                                                    <Binding Path="QuestionPackName" />
                                                     <Binding Path="Questions.Count" />
                                                 </MultiBinding>
                                             </TextBlock.Text>
@@ -68,11 +73,11 @@
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsSelected" Value="True">
                                             <Setter TargetName="Text" Property="Height" Value="70" />
-                                            <Setter TargetName="Border" Property="BorderBrush" Value="Orange"></Setter>
+                                            <Setter TargetName="Border" Property="BorderBrush" Value="Orange" />
                                         </Trigger>
                                         <Trigger Property="IsSelected" Value="False">
                                             <Setter TargetName="Text" Property="Height" Value="55" />
-                                            <Setter TargetName="Border" Property="BorderBrush" Value="Black"></Setter>
+                                            <Setter TargetName="Border" Property="BorderBrush" Value="Black" />
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
@@ -86,18 +91,52 @@
                     <DataTemplate>
 
                         <DataGrid
-                            Background="#ceb97a"
-                            ItemsSource="{Binding Questions, Mode=TwoWay}"
-                            SelectedItem="{Binding DataContext.SelectedItem, ElementName=Root}"
+                            materialDesign:DataGridAssist.EnableEditBoxAssist="False"
+                            ItemsSource="{Binding Path=Questions, Mode=TwoWay}"
+                            SelectedItem="{Binding DataContext.SelectedQuestion, ElementName=Root}"
                             FontSize="17"
                             CanUserAddRows="False"
-                            IsReadOnly="{Binding   DataContext.IsNotAdmin,ElementName=Root}"
-                            SelectionUnit="FullRow"
-                            >
+                            CanUserDeleteRows="False"
+                            IsReadOnly="True"
+                            AutoGenerateColumns="False"
+                            SelectionUnit="FullRow" d:DataContext="{d:DesignInstance }">
+                            <DataGrid.Background>
 
+                                <ImageBrush ImageSource="../../Resources/Images/Kolesovanie.jpg" />
+                            </DataGrid.Background>
 
+                            <DataGrid.Columns >
+                                <DataGridTextColumn   Binding="{Binding QUESTION_TEXT}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="30" Text="{DynamicResource QuestionText }"></TextBlock>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn  Binding="{Binding RIGHT_ANSWER}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="30"  Text="{DynamicResource RightAnswer }"></TextBlock>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn  Binding="{Binding FIRST_WRONG_ANSWER}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="30"  Text="{DynamicResource FirstWrongAnswer }"></TextBlock>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn  Binding="{Binding SECOND_WRONG_ANSWER}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="30"  Text="{DynamicResource SecondWrongAnswer }"></TextBlock>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn  Binding="{Binding THIRD_WRONG_ANSWER}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="30"  Text="{DynamicResource ThirdWrongAnswer }"></TextBlock>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                            
                             <DataGrid.RowStyle>
                                 <Style TargetType="DataGridRow">
+                                    <Setter Property="Background" Value="LightGray" />
+                                    <Setter Property="Opacity" Value="0.9" />
                                     <Style.Triggers>
                                         <Trigger Property="IsSelected"
                                                  Value="True">
@@ -110,7 +149,6 @@
                                 </Style>
                             </DataGrid.RowStyle>
 
-                          
 
                         </DataGrid>
 
@@ -119,107 +157,205 @@
                 </TabControl.ContentTemplate>
 
             </TabControl>
-        </materialDesign:Card>
+        </materialDesign:Card>-->
+        
+        
+                        <DataGrid
+                            Grid.Column="0"
+                            materialDesign:DataGridAssist.EnableEditBoxAssist="False"
+                            ItemsSource="{Binding SelectedQuestionPackList.Questions , Mode=TwoWay}"
+                            SelectedItem="{Binding DataContext.SelectedQuestion, ElementName=Root}"
+                            FontSize="17"
+                            CanUserAddRows="False"
+                            CanUserDeleteRows="False"
+                            IsReadOnly="True"
+                            AutoGenerateColumns="False"
+                            SelectionUnit="FullRow" d:DataContext="{d:DesignInstance }">
+                            <DataGrid.Background>
+
+                                <ImageBrush ImageSource="../../Resources/Images/Kolesovanie.jpg" />
+                            </DataGrid.Background>
+
+                            <DataGrid.Columns >
+                                <DataGridTextColumn   Binding="{Binding QUESTION_TEXT}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="30" Text="{DynamicResource QuestionText }"></TextBlock>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn  Binding="{Binding RIGHT_ANSWER}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="30"  Text="{DynamicResource RightAnswer }"></TextBlock>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn  Binding="{Binding FIRST_WRONG_ANSWER}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="30"  Text="{DynamicResource FirstWrongAnswer }"></TextBlock>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn  Binding="{Binding SECOND_WRONG_ANSWER}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="30"  Text="{DynamicResource SecondWrongAnswer }"></TextBlock>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn  Binding="{Binding THIRD_WRONG_ANSWER}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="30"  Text="{DynamicResource ThirdWrongAnswer }"></TextBlock>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                            
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Setter Property="Background" Value="LightGray" />
+                                    <Setter Property="Opacity" Value="0.9" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected"
+                                                 Value="True">
+                                            <Setter Property="BorderBrush"
+                                                    Value="Blue" />
+                                            <Setter Property="BorderThickness"
+                                                    Value="2" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.RowStyle>
 
 
-        <Grid Grid.Column="1" Background="#8e6847">
+                        </DataGrid>
+
+
+        <Grid Grid.Column="1">
+
+            <Grid.Background>
+                <ImageBrush
+                    ImageSource="../../Resources/Images/старая-средневековая-текстура-каменной-стены-каменная-форта-143380597.jpg" />
+            </Grid.Background>
 
             <Grid.RowDefinitions>
+                <RowDefinition Height="4*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
 
 
-            <TextBox Grid.Row="0" HorizontalAlignment="Stretch"
-                     Margin="5px"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     VerticalAlignment="Stretch"
-
-                     AcceptsReturn="True"
-                     TextWrapping="Wrap"
-                     VerticalScrollBarVisibility="Auto"
-                     materialDesign:HintAssist.Hint="This is a text area"
-                     FontSize="20px"
-                     IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
-            <TextBox Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                     Margin="5px"
-                     FontSize="20px"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
-
-                     AcceptsReturn="True"
-                     TextWrapping="Wrap"
-                     VerticalScrollBarVisibility="Auto"
-                     materialDesign:HintAssist.Hint="This is a text area"
-                     IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
-            <TextBox Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                     Margin="5px"
-                     FontSize="20px"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
-
-
-                     AcceptsReturn="True"
-                     TextWrapping="Wrap"
-                     VerticalScrollBarVisibility="Auto"
-                     materialDesign:HintAssist.Hint="This is a text area"
-
-                     IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
-
-            <TextBox Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                     Margin="5px"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     AcceptsReturn="True"
-                     TextWrapping="Wrap"
-                     VerticalScrollBarVisibility="Auto"
-                     materialDesign:HintAssist.Hint="Third wrong answer"
-
-                     FontSize="20px"
-                     IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
-
-
-            <Viewbox Grid.Row="4">
-                <Button Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                        Command="{Binding Path=CreateNewPack}"
-                        Margin="0 15 0 0"
-                        Foreground="Tomato"
-                        Background="AntiqueWhite"
-                        
-                        Style="{StaticResource MaterialDesignRaisedLightButton}">
+            
+            <StackPanel  Background="AntiqueWhite" VerticalAlignment="Center" Orientation="Vertical" Grid.Row="0" >
+                <ToggleButton
+                    VerticalAlignment="Top"
+                      
+                    Grid.Row="0"
+                    Style="{StaticResource MaterialDesignActionToggleButton}"
+                    ToolTip="MaterialDesignActionLightToggleButton"
+                    Content="{DynamicResource MyPacks}"
+                    IsChecked="{Binding NotMyPacks, Mode=TwoWay}"
+                    Width="250px"
+                    Background="AntiqueWhite"
+                    materialDesign:ToggleButtonAssist.OnContent="{DynamicResource AllPacks}"
+                    FontSize="25px"
+                    Foreground="Black"
+                    Margin="0 20 0 0 " />
+                <RadioButton
+                    Foreground="Tomato"
+                    FontSize="25"
+                    Background="#8e6847"
+                    Content="{DynamicResource ByPackName}"
+                    IsChecked="{Binding ByPackName, Mode=TwoWay}"
+                    Style="{StaticResource MaterialDesignRadioButton}" />
+                <RadioButton
+                     Foreground="Tomato"
+                     Background="#8e6847"
+                    FontSize="25"
+                    Content="{DynamicResource ByQuestion}"
+                     IsChecked="{Binding ByQuestion, Mode=TwoWay}"
+                    Style="{StaticResource MaterialDesignRadioButton}" />
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"> 
+                    <TextBox Text="{Binding SearchText,Mode=TwoWay}" FontSize="20" Background="LightGray" Height="30px" TextWrapping="Wrap" >
+                    
+                </TextBox>
+                </ScrollViewer>
+                <Button  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0 0 0 0"
+                    Height="50px"
+               
+                    Command="{Binding Search}"
+                    Foreground="Tomato"
+                    Background="AntiqueWhite"
+                    Style="{StaticResource MaterialDesignRaisedLightButton}">
                     <TextBlock
-                        FontSize="25px"
-                        Text="Создать вопрос" />
+                    FontSize="25px"
+                    Text="{DynamicResource Search}" />
                 </Button>
-            </Viewbox>
+                <ComboBox 
+                    Margin="10 0 0 0"
+                    materialDesign:ColorZoneAssist.Background="AntiqueWhite"
+                    FontSize="25"
+                    materialDesign:HintAssist.Hint="{DynamicResource ChoosePack}"
+                    materialDesign:HintAssist.Background="Transparent"
+                    HorizontalContentAlignment="Center"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    ItemsSource="{Binding QuestionPackLists}"
+                    SelectedItem="{Binding SelectedQuestionPackList, Mode=TwoWay}"
+                    Background="AntiqueWhite"
+                >
+        
+                </ComboBox>
+            </StackPanel>
 
-            <Button Grid.Row="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0 15 0 0"
-                    Height="50px"
+            <Button Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                    Command="{Binding EditSelectedPack}"
+                    Margin="0 15 0 0"
                     Foreground="Tomato"
                     Background="AntiqueWhite"
-                    Command="{Binding OpenMainMenuPage}"
+                    Height="50px"
                     Style="{StaticResource MaterialDesignRaisedLightButton}">
                 <TextBlock
                     FontSize="25px"
-                    Text="Выйти в меню" />
+                    Text="{DynamicResource EditPack}" />
             </Button>
-
-            <Button Grid.Row="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0 0 0 0"
-                    Height="50px"
+            
+            
+            <Button Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                    Command="{Binding Path=OpenSelectQuestionsWindow}"
+                    Margin="0 15 0 0"
                     Foreground="Tomato"
                     Background="AntiqueWhite"
-                    Command="{Binding ChangeRightAnswer}"
+                    Height="50px"
                     Style="{StaticResource MaterialDesignRaisedLightButton}">
                 <TextBlock
                     FontSize="25px"
-                    Text="Создать новый пак" />
+                    Text="{DynamicResource AddQuestionFromArchive}" />
             </Button>
+      
             
-            
-            <Button Grid.Row="7" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0 0 0 0"
+            <Button Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0 15 0 0"
+                    Height="50px"
+                    Foreground="Tomato"
+                    Background="AntiqueWhite"
+                    Command="{Binding OpenCreatePackWindowCommand}"
+                    Style="{StaticResource MaterialDesignRaisedLightButton}">
+                <TextBlock
+                    FontSize="25px"
+                    Text="{DynamicResource CreatePack}" />
+            </Button>
+
+            <Button Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0 15 0 0"
+                    Height="50px"
+                    Foreground="Tomato"
+                    Background="AntiqueWhite"
+                    Command="{Binding DeleteSelectedPack}"
+                    Style="{StaticResource MaterialDesignRaisedLightButton}">
+                <TextBlock
+                    FontSize="25px"
+                    Text="{DynamicResource DeleteSelectedPack}" />
+            </Button>
+
+            <Button Grid.Row="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0 15 0 15"
                     Height="50px"
                     Command="{Binding DeleteSelectedQuestion}"
                     Foreground="Tomato"
@@ -227,12 +363,57 @@
                     Style="{StaticResource MaterialDesignRaisedLightButton}">
                 <TextBlock
                     FontSize="25px"
-                    Text="Удалить выбранный вопрос" />
+                    Text="{DynamicResource DeleteSelectedQuestion}" />
             </Button>
             
-            
+                 <StackPanel Orientation="Horizontal"  Grid.Row="7" HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+                    <ToggleButton
+                        Width="80"
+                        Height="80"
+                        Margin="10 0 0 0"
+                        Style="{StaticResource MaterialDesignActionToggleButton}"
+                        Command="{Binding ChangeLanguage}"
+                        IsChecked="{Binding LanguageChecked,Mode=TwoWay}"
+                        ToolTip="MaterialDesignActionLightToggleButton">
+                        <materialDesign:ToggleButtonAssist.OnContent>
+                            <Image Source="../../Resources/Images/united-kingdom.png" />
+                        </materialDesign:ToggleButtonAssist.OnContent>
+                        <ToggleButton.Content>
+                            <Image Source="../../Resources/Images/russia.png" />
+                        </ToggleButton.Content>
+                    </ToggleButton>
+                    <ToggleButton
+                        Margin="10 0 0 0"
+                        Width="80"
+                        Height="80"
+                        Style="{StaticResource MaterialDesignActionToggleButton}"
+                     Command="{Binding SwitchVolume}"
+                        IsChecked="{Binding VolumeChecked,Mode=TwoWay}"
+                        ToolTip="MaterialDesignActionLightToggleButton">
+                        <materialDesign:ToggleButtonAssist.OnContent>
+                            <Image Source="../../Resources/Images/SoundOff.png" />
+                        </materialDesign:ToggleButtonAssist.OnContent>
+                        <ToggleButton.Content>
+                            <Image Source="../../Resources/Images/SoundOn.jpg" />
+                        </ToggleButton.Content>
+                    </ToggleButton>
+                    
+                    
+                     <Button
+                         Margin="10 0 0 0"  
+                         materialDesign:ColorZoneAssist.Background="Transparent"
+                         Command="{Binding OpenMainMenuPage}"
+                         Width="80"
+                         Height="80"
+                         Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                         HorizontalAlignment="Left"
+                     >
+                         <Image Source="../../Resources/Images/MainMenu.png" />
+                     </Button>
 
 
+                </StackPanel>
         </Grid>
 
 

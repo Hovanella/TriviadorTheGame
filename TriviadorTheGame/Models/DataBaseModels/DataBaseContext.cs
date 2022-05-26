@@ -2,12 +2,10 @@
 
 namespace TriviadorTheGame.Models.DataBaseModels
 {
-
     public class DataBaseContext : DbContext
     {
         public DataBaseContext() : base("name=TriviadorTheGameDBEntities")
         {
-
         }
 
         public DbSet<User> Users { get; set; }

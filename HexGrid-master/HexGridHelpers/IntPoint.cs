@@ -2,26 +2,17 @@
 
 namespace HexGridHelpers
 {
-    public struct IntPoint: IEquatable<IntPoint>
+    public struct IntPoint : IEquatable<IntPoint>
     {
-        private readonly int _x;
-        private readonly int _y;
-
         public IntPoint(int x, int y)
         {
-            _x = x;
-            _y = y;
+            X = x;
+            Y = y;
         }
 
-        public int X
-        {
-            get { return _x; }
-        }
+        public int X { get; }
 
-        public int Y
-        {
-            get { return _y; }
-        }
+        public int Y { get; }
 
         public static bool operator ==(IntPoint a, IntPoint b)
         {

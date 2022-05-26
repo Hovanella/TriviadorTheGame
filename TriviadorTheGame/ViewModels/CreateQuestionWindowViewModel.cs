@@ -1,18 +1,26 @@
-﻿using System;
-using System.Net.Mime;
-using System.Windows;
-using TriviadorTheGame.ViewModels.BaseViewModel;
-using TriviadorTheGame.Views.RedactorPage;
+﻿using TriviadorTheGame.ViewModels.BaseViewModel;
 
 namespace TriviadorTheGame.ViewModels
 {
-    public class CreatePackWindowViewModel : BaseViewModel.BaseViewModel
+    public class CreateQuestionWindowViewModel : BaseViewModel.BaseViewModel
     {
-        private string _questionText = String.Empty;
-        private string _rightAnswer = String.Empty;
-        private string _firstWrongAnswer = String.Empty;
-        private string _secondWrongAnswer = String.Empty;
-        private string _thirdWrongAnswer = String.Empty;
+        private string _firstWrongAnswer = string.Empty;
+        private string _questionText = string.Empty;
+        private string _rightAnswer = string.Empty;
+        private string _secondWrongAnswer = string.Empty;
+        private string _thirdWrongAnswer = string.Empty;
+
+
+        public CreateQuestionWindowViewModel()
+        {
+            ModelViewManager.CreateQuestionWindowViewModel = this;
+
+
+            CloseCreateQuestionWindowCommand = new RelayCommand(o =>
+            {
+                ModelViewManager.QuestionArchiveViewModel.CloseCreateQuestionWindow();
+            });
+        }
 
         public string QuestionText
         {
@@ -23,6 +31,7 @@ namespace TriviadorTheGame.ViewModels
                 OnPropertyChanged();
             }
         }
+
         public string FirstWrongAnswer
         {
             get => _firstWrongAnswer;
@@ -32,6 +41,7 @@ namespace TriviadorTheGame.ViewModels
                 OnPropertyChanged();
             }
         }
+
         public string SecondWrongAnswer
         {
             get => _secondWrongAnswer;
@@ -41,6 +51,7 @@ namespace TriviadorTheGame.ViewModels
                 OnPropertyChanged();
             }
         }
+
         public string ThirdWrongAnswer
         {
             get => _thirdWrongAnswer;
@@ -50,6 +61,7 @@ namespace TriviadorTheGame.ViewModels
                 OnPropertyChanged();
             }
         }
+
         public string RightAnswer
         {
             get => _rightAnswer;
@@ -59,24 +71,8 @@ namespace TriviadorTheGame.ViewModels
                 OnPropertyChanged();
             }
         }
-        
 
-
-        public CreatePackWindowViewModel()
-        {
-            
-            ModelViewManager.CreatePackWindowViewModel = this;
-            
-           
-            CloseCreatePackWindowCommand = new RelayCommand(() =>
-            {
-                ModelViewManager.RedactorViewModel.CloseCreateQuestionWindow();
-            });
-            
-        }
-
-        public RelayCommand CloseCreatePackWindowCommand { get; set; }
-        
-
+        public RelayCommand CloseCreateQuestionWindowCommand { get; set; }
+  
     }
 }

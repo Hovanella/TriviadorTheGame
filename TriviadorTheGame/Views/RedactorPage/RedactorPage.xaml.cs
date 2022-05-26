@@ -13,12 +13,10 @@ namespace TriviadorTheGame.Views.RedactorPage
 
         private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-          
-                var item = (sender as DataGrid).SelectedItem;
-                
-                if(item != null)
-                    MessageBox.Show((item as Question).QUESTION_TEXT);
-                    
+            var item = (sender as DataGrid).SelectedItem;
+
+            if (item != null)
+                MessageBox.Show((item as Question).QUESTION_TEXT);
         }
     }
 }

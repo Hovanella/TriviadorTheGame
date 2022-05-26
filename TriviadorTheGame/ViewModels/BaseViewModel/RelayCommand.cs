@@ -3,11 +3,20 @@ using System.Windows.Input;
 
 namespace TriviadorTheGame.ViewModels.BaseViewModel
 {
-
     public class RelayCommand : ICommand
     {
-        private Action _action;
-        private Predicate<object> _canExecute;
+        private readonly Action<object> _action;
+        private readonly Predicate<object> _canExecute;
+
+        public RelayCommand(Action<object> action, Predicate<object> canExecute)
+        {
+            _action = action;
+            _canExecute = canExecute;
+        }
+
+        public RelayCommand(Action<object> action) : this(action, null)
+        {
+        }
 
         public event EventHandler CanExecuteChanged
         {
@@ -15,24 +24,14 @@ namespace TriviadorTheGame.ViewModels.BaseViewModel
             remove => CommandManager.RequerySuggested -= value;
         }
 
-        public RelayCommand(Action action, Predicate<object> canExecute)
-        {
-            _action = action;
-            _canExecute = canExecute;
-        }
-
-        public RelayCommand(Action action) : this(action, null)
-        {
-        }
-
         public bool CanExecute(object parameter)
         {
-            return _canExecute == null ? true : _canExecute(parameter);
+            return _canExecute?.Invoke(parameter) ?? true;
         }
 
         public void Execute(object parameter)
         {
-            _action.Invoke();
+            _action.Invoke(parameter);
         }
     }
 }

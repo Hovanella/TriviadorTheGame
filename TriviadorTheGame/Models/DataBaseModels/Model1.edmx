@@ -13,8 +13,8 @@
           <Property Name="QUESTION_TEXT" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="RIGHT_ANSWER" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="FIRST_WRONG_ANSWER" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="FIRST_SECOND_ANSWER" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="FIRST_THIRD_ANSWER" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="SECOND_WRONG_ANSWER" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="THIRD_WRONG_ANSWER" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="CREATOR_ID" Type="int" />
         </EntityType>
         <EntityType Name="QuestionsPack">
@@ -151,8 +151,8 @@
           <Property Name="QUESTION_TEXT" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RIGHT_ANSWER" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FIRST_WRONG_ANSWER" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FIRST_SECOND_ANSWER" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FIRST_THIRD_ANSWER" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SECOND_WRONG_ANSWER" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="THIRD_WRONG_ANSWER" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CREATOR_ID" Type="Int32" />
           <NavigationProperty Name="User" Relationship="Self.FK__Questions__CREAT__2C3393D0" FromRole="Questions" ToRole="Users" />
           <NavigationProperty Name="QuestionsToPacks" Relationship="Self.FK__Questions__QUEST__31EC6D26" FromRole="Questions" ToRole="QuestionsToPack" />
@@ -259,7 +259,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TriviadorTheGameDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TriviadorTheGameDBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Questions" EntityType="Self.Question" />
           <EntitySet Name="QuestionsPacks" EntityType="Self.QuestionsPack" />
           <EntitySet Name="QuestionsToPacks" EntityType="Self.QuestionsToPack" />
@@ -291,7 +291,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище TriviadorTheGameDBModelContainer" CdmEntityContainer="TriviadorTheGameDBEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TriviadorTheGameDBModelContainer" CdmEntityContainer="TriviadorTheGameDBEntities1">
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="TriviadorTheGameDBModel.Question">
               <MappingFragment StoreEntitySet="Questions">
@@ -299,8 +299,8 @@
                 <ScalarProperty Name="QUESTION_TEXT" ColumnName="QUESTION_TEXT" />
                 <ScalarProperty Name="RIGHT_ANSWER" ColumnName="RIGHT_ANSWER" />
                 <ScalarProperty Name="FIRST_WRONG_ANSWER" ColumnName="FIRST_WRONG_ANSWER" />
-                <ScalarProperty Name="FIRST_SECOND_ANSWER" ColumnName="FIRST_SECOND_ANSWER" />
-                <ScalarProperty Name="FIRST_THIRD_ANSWER" ColumnName="FIRST_THIRD_ANSWER" />
+                <ScalarProperty Name="SECOND_WRONG_ANSWER" ColumnName="SECOND_WRONG_ANSWER" />
+                <ScalarProperty Name="THIRD_WRONG_ANSWER" ColumnName="THIRD_WRONG_ANSWER" />
                 <ScalarProperty Name="CREATOR_ID" ColumnName="CREATOR_ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="RowHeaderStyle" TargetType="DataGridRowHeader">
+        <Setter Property="Background" Value="Gray"></Setter>
+        <Setter Property="FontSize" Value="35"></Setter>
+    </Style>
+</ResourceDictionary>

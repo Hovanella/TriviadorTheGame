@@ -7,12 +7,13 @@
       xmlns:viewModels="clr-namespace:TriviadorTheGame.ViewModels"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
+      FontFamily="{StaticResource Medieval}"
       Title="MainMenu">
 
     <Page.DataContext>
-        <viewModels:MainMenuViewModel/>
+        <viewModels:MainMenuViewModel />
     </Page.DataContext>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="91*" />
@@ -20,11 +21,10 @@
         </Grid.RowDefinitions>
 
         <Grid.Background>
-            <ImageBrush ImageSource="../../Resources/Images/1613661545_51-p-fon-dlya-prezentatsii-petr-1-55.jpg">
-            </ImageBrush>
+            <ImageBrush ImageSource="../../Resources/Images/1613661545_51-p-fon-dlya-prezentatsii-petr-1-55.jpg" />
         </Grid.Background>
 
-        <Image Grid.Row="0" Source="../../Resources/Images/440-4408920_triv-2017-update-graphics.png" Width="400px"></Image>
+        <Image Grid.Row="0" Source="../../Resources/Images/440-4408920_triv-2017-update-graphics.png" Width="400px" />
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -51,7 +51,7 @@
                         Foreground="White"
                         Style="{StaticResource MaterialDesignRaisedLightButton}">
                         <TextBlock
-                            Text="Начать игру" />
+                            Text="{DynamicResource StartGame}" />
 
                     </Button>
                     <Button
@@ -65,10 +65,11 @@
                         Foreground="White"
                         Style="{StaticResource MaterialDesignRaisedLightButton}">
                         <TextBlock
-                            Text="Редактор Вопросов" />
+                            Text="{DynamicResource GameRedactor}" />
 
                     </Button>
                     <Button
+                        Command="{Binding OpenUserStatisticsPage}"
                         Margin="0 0 0 20"
                         Background="#94671f"
                         Foreground="White"
@@ -78,12 +79,13 @@
                         materialDesign:ShadowAssist.Darken="True"
                         Style="{StaticResource MaterialDesignRaisedLightButton}">
                         <TextBlock
-                            Text="Паки Вопросов" />
+                            Text="{DynamicResource UserStatistics}" />
 
                     </Button>
                     <Button
                         Margin="0 0 0 20"
                         Background="#94671f"
+                        Command="{Binding OpenQuestionArchive}"
                         Foreground="White"
                         BorderThickness="2px"
                         BorderBrush="Gold"
@@ -91,36 +93,11 @@
                         materialDesign:ShadowAssist.Darken="True"
                         Style="{StaticResource MaterialDesignRaisedLightButton}">
                         <TextBlock
-                            Text="Статистика" />
+                            Text="{DynamicResource QuestionArchive}" />
 
                     </Button>
-                    <Button
-                        Margin="0 0 0 20"
-                        Background="#94671f"
-                        Foreground="White"
-                        BorderThickness="2px"
-                        BorderBrush="Gold"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth5"
-                        materialDesign:ShadowAssist.Darken="True"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}">
-                        <TextBlock
-                            Text="Настройки" />
-
-                    </Button>
-                    <Button
-                        Command="{Binding OpenAboutGamePage}"
-                        Margin="0 0 0 20"
-                        Background="#94671f"
-                        Foreground="White"
-                        BorderThickness="2px"
-                        BorderBrush="Gold"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth5"
-                        materialDesign:ShadowAssist.Darken="True"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}">
-                        <TextBlock
-                            Text="Об Игре" />
-
-                    </Button>
+                  
+                
                     <Button
                         Command="{Binding Path = OpenLoggingPage}"
                         Margin="0 0 0 20"
@@ -132,11 +109,11 @@
                         materialDesign:ShadowAssist.Darken="True"
                         Style="{StaticResource MaterialDesignRaisedLightButton}">
                         <TextBlock
-                            Text="Сменить Профиль" />
+                            Text="{DynamicResource ChangeAccount}" />
 
                     </Button>
                     <Button
-                       Command="{Binding ExitCommand}"
+                        Command="{Binding ExitCommand}"
                         Margin="0 0 0 20"
                         Background="#94671f"
                         BorderThickness="2px"
@@ -146,7 +123,7 @@
                         Foreground="White"
                         Style="{StaticResource MaterialDesignRaisedLightButton}">
                         <TextBlock
-                            Text="Выйти из игры" />
+                            Text="{DynamicResource Exit}" />
 
                     </Button>
 
@@ -161,28 +138,46 @@
                     <RowDefinition Height="49*" />
                 </Grid.RowDefinitions>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="1*" />
-
-                </Grid.ColumnDefinitions>
+              
 
 
-                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
                     <ToggleButton
+                        Width="80"
+                        Height="80"
+                        Margin="10 0 0 0"
                         Style="{StaticResource MaterialDesignActionToggleButton}"
+                        Command="{Binding ChangeLanguage}"
+                        IsChecked="{Binding LanguageChecked,Mode=TwoWay}"
                         ToolTip="MaterialDesignActionLightToggleButton">
                         <materialDesign:ToggleButtonAssist.OnContent>
-                            <Image Source="../../Resources/Images/united-kingdom.png"></Image>
+                            <Image Source="../../Resources/Images/united-kingdom.png" />
                         </materialDesign:ToggleButtonAssist.OnContent>
                         <ToggleButton.Content>
-                            <Image Source="../../Resources/Images/russia.png"></Image>
+                            <Image Source="../../Resources/Images/russia.png" />
                         </ToggleButton.Content>
                     </ToggleButton>
-                    <Image Width="40px" Height="40px"  Source="{Binding RoleImage}"/>
-                      
+                    <ToggleButton
+                        Margin="10 0 0 0"
+                        Width="80"
+                        Height="80"
+                        Style="{StaticResource MaterialDesignActionToggleButton}"
+                     Command="{Binding SwitchVolume}"
+                        IsChecked="{Binding VolumeChecked,Mode=TwoWay}"
+                        ToolTip="MaterialDesignActionLightToggleButton">
+                        <materialDesign:ToggleButtonAssist.OnContent>
+                            <Image Source="../../Resources/Images/SoundOff.png" />
+                        </materialDesign:ToggleButtonAssist.OnContent>
+                        <ToggleButton.Content>
+                            <Image Source="../../Resources/Images/SoundOn.jpg" />
+                        </ToggleButton.Content>
+                    </ToggleButton>
                     
+                    
+                    <Image ToolTip="{Binding ToolTip}" Margin="10 0 0 0" Width="80px" Height="80px" Source="{Binding RoleImage}" />
+
+
                 </StackPanel>
             </Grid>
 

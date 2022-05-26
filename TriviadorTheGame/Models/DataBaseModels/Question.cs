@@ -24,10 +24,15 @@ namespace TriviadorTheGame.Models.DataBaseModels
         public string QUESTION_TEXT { get; set; }
         public string RIGHT_ANSWER { get; set; }
         public string FIRST_WRONG_ANSWER { get; set; }
-        public string FIRST_SECOND_ANSWER { get; set; }
-        public string FIRST_THIRD_ANSWER { get; set; }
+        public string SECOND_WRONG_ANSWER { get; set; }
+        public string THIRD_WRONG_ANSWER { get; set; }
         public Nullable<int> CREATOR_ID { get; set; }
-    
+
+        public override string ToString()
+        {
+           return (QUESTION_TEXT+RIGHT_ANSWER+FIRST_WRONG_ANSWER+SECOND_WRONG_ANSWER+THIRD_WRONG_ANSWER).ToLower();
+        }
+
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuestionsToPack> QuestionsToPacks { get; set; }

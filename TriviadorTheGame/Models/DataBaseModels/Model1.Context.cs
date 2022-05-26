@@ -13,10 +13,10 @@ namespace TriviadorTheGame.Models.DataBaseModels
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TriviadorTheGameDBEntities : DbContext
+    public partial class TriviadorTheGameDBEntities1 : DbContext
     {
-        public TriviadorTheGameDBEntities()
-            : base("name=TriviadorTheGameDBEntities")
+        public TriviadorTheGameDBEntities1()
+            : base("name=TriviadorTheGameDBEntities1")
         {
         }
     

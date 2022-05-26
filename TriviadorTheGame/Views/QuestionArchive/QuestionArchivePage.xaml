@@ -1,0 +1,217 @@
+﻿<Page x:Class="TriviadorTheGame.Views.QuestionArchive.QuestionArchivePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:TriviadorTheGame.Views.QuestionArchive"
+      xmlns:viewModels="clr-namespace:TriviadorTheGame.ViewModels"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d"
+      FontFamily="{StaticResource Medieval}"
+      Title="QuestionArchivePage" d:DesignHeight="450" d:DesignWidth="800">
+
+    <Page.DataContext>
+        <viewModels:QuestionArchiveViewModel />
+    </Page.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="619*" />
+            <ColumnDefinition Width="181*" />
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="../../Resources/Images/1613661545_51-p-fon-dlya-prezentatsii-petr-1-55.jpg" />
+        </Grid.Background>
+
+
+        <DataGrid
+            GridLinesVisibility="All"
+            AlternatingRowBackground="Tan"
+            materialDesign:DataGridAssist.EnableEditBoxAssist="False"
+            ItemsSource="{Binding Path=Questions, Mode=TwoWay}"
+            SelectedItem="{Binding SelectedQuestion, Mode=TwoWay}"
+            FontSize="20"
+         MinRowHeight="10"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            RowHeaderStyle="{StaticResource RowHeaderStyle}"
+            IsReadOnly="True"
+            AutoGenerateColumns="False"
+            SelectionUnit="FullRow"
+            RowHeight="70"
+            >
+
+            <DataGrid.Columns >
+                <DataGridTextColumn   Binding="{Binding QUESTION_TEXT}">
+                    <DataGridTextColumn.Header>
+                        <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="30" Text="{DynamicResource QuestionText }"></TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn  Binding="{Binding RIGHT_ANSWER}">
+                    <DataGridTextColumn.Header>
+                        <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="30"  Text="{DynamicResource RightAnswer }"></TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn  Binding="{Binding FIRST_WRONG_ANSWER}">
+                    <DataGridTextColumn.Header>
+                        <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="30"  Text="{DynamicResource FirstWrongAnswer }"></TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn  Binding="{Binding SECOND_WRONG_ANSWER}">
+                    <DataGridTextColumn.Header>
+                        <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="30"  Text="{DynamicResource SecondWrongAnswer }"></TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn  Binding="{Binding THIRD_WRONG_ANSWER}">
+                    <DataGridTextColumn.Header>
+                        <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="30"  Text="{DynamicResource ThirdWrongAnswer }"></TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+
+            <DataGrid.Background>
+                <ImageBrush ImageSource="../../Resources/Images/Massacre_of_Queen_Anacaona_and_her_subjects.jpg"></ImageBrush>
+            </DataGrid.Background>
+
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="FontSize" Value="20"></Setter>
+                    <Setter Property="Background" Value="#94671f" />
+                    <Setter Property="Opacity" Value="0.9" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected"
+                                 Value="True">
+                            <Setter Property="BorderBrush"
+                                    Value="Blue" />
+                            <Setter Property="BorderThickness"
+                                    Value="2" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+
+
+        </DataGrid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel VerticalAlignment="Center" Grid.Row="0">
+                <ToggleButton
+                    Style="{StaticResource MaterialDesignActionToggleButton}"
+                    ToolTip="MaterialDesignActionLightToggleButton"
+                    Content="{DynamicResource MyQuestions}"
+                    IsChecked="{Binding MyQuestions, Mode=TwoWay}"
+                    Width="150px"
+                    Background="AntiqueWhite"
+                    materialDesign:ToggleButtonAssist.OnContent="{DynamicResource AllQuestions}"
+                    FontSize="25px"
+                    Foreground="Black"
+                    Margin="0 20 0 0 " />
+                <StackPanel Background="AntiqueWhite" VerticalAlignment="Center" Orientation="Vertical" Grid.Row="0">
+
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                        <TextBox Text="{Binding SearchText , Mode= TwoWay}" FontSize="15" Background="LightGray"
+                                 Height="30px" TextWrapping="Wrap">
+
+                        </TextBox>
+                    </ScrollViewer>
+                    <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0 0 0 0"
+                            Height="50px"
+
+                            Command="{Binding Search}"
+                            Foreground="Tomato"
+                            Background="AntiqueWhite"
+                            Style="{StaticResource MaterialDesignRaisedLightButton}">
+                        <TextBlock
+                            FontSize="25px"
+                            Text="{DynamicResource Search}" />
+                    </Button>
+                </StackPanel>
+                <Button Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                        Command="{Binding EditSelectedQuestion}"
+                        Margin="0 15 0 0"
+                        Foreground="Tomato"
+                        Background="AntiqueWhite"
+                        Height="50px"
+                        Style="{StaticResource MaterialDesignRaisedLightButton}">
+                    <TextBlock
+                        FontSize="25px"
+                        Text="{DynamicResource EditQuestion}" />
+                </Button>
+                <Button Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                        Command="{Binding Path=OpenCreateQuestionWindowCommand}"
+                        Margin="0 15 0 0"
+                        Foreground="Tomato"
+                        Background="AntiqueWhite"
+                        Height="50px"
+                        Style="{StaticResource MaterialDesignRaisedLightButton}">
+                    <TextBlock
+                        FontSize="25px"
+                        Text="{DynamicResource CreateQuestion}" />
+                </Button>
+                <Button Grid.Row="7" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0 15 0 15"
+                        Height="50px"
+                        Command="{Binding DeleteSelectedQuestion}"
+                        Foreground="Tomato"
+                        Background="AntiqueWhite"
+                        Style="{StaticResource MaterialDesignRaisedLightButton}">
+                    <TextBlock
+                        FontSize="25px"
+                        Text="{DynamicResource DeleteQuestion}" />
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right"
+                        VerticalAlignment="Center">
+                <ToggleButton
+                    Width="80"
+                    Height="80"
+                    Margin="10 0 0 0"
+                    Style="{StaticResource MaterialDesignActionToggleButton}"
+                    Command="{Binding ChangeLanguage}"
+                    IsChecked="{Binding LanguageChecked,Mode=TwoWay}"
+                    ToolTip="MaterialDesignActionLightToggleButton">
+                    <materialDesign:ToggleButtonAssist.OnContent>
+                        <Image Source="../../Resources/Images/united-kingdom.png" />
+                    </materialDesign:ToggleButtonAssist.OnContent>
+                    <ToggleButton.Content>
+                        <Image Source="../../Resources/Images/russia.png" />
+                    </ToggleButton.Content>
+                </ToggleButton>
+                <ToggleButton
+                    Margin="10 0 0 0"
+                    Width="80"
+                    Height="80"
+                    Style="{StaticResource MaterialDesignActionToggleButton}"
+                    Command="{Binding SwitchVolume}"
+                    IsChecked="{Binding VolumeChecked,Mode=TwoWay}"
+                    ToolTip="MaterialDesignActionLightToggleButton">
+                    <materialDesign:ToggleButtonAssist.OnContent>
+                        <Image Source="../../Resources/Images/SoundOff.png" />
+                    </materialDesign:ToggleButtonAssist.OnContent>
+                    <ToggleButton.Content>
+                        <Image Source="../../Resources/Images/SoundOn.jpg" />
+                    </ToggleButton.Content>
+                </ToggleButton>
+
+
+                <Button
+                    materialDesign:ColorZoneAssist.Background="Transparent"
+                    Command="{Binding OpenMainMenu}"
+                    Width="80"
+                    Height="80"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                    HorizontalAlignment="Left"
+                       >
+                    <Image Source="../../Resources/Images/MainMenu.png" />
+                </Button>
+
+
+            </StackPanel>
+        </Grid>
+
+
+    </Grid>
+</Page>

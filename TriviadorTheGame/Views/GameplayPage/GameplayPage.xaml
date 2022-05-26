@@ -4,11 +4,20 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:hexGridControl="clr-namespace:HexGridControl;assembly=HexGridControl"
+      xmlns:viewModels="clr-namespace:TriviadorTheGame.ViewModels"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GameplayPage"
-      FontFamily="{StaticResource Medieval}">
+      FontFamily="{StaticResource Medieval}"
+      Opacity="{Binding PageOpacity,Mode=TwoWay}"
+      >
+
+    <Page.DataContext>
+        <viewModels:GameplayViewModel />
+    </Page.DataContext>
+
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -16,8 +25,7 @@
             <ColumnDefinition Width="643*" />
         </Grid.ColumnDefinitions>
         <Grid.Background>
-            <ImageBrush ImageSource="../../Resources/Images/GameField.jpg">
-            </ImageBrush>
+            <ImageBrush ImageSource="../../Resources/Images/GameField.jpg" />
         </Grid.Background>
 
 
@@ -31,20 +39,23 @@
                 <Setter Property="Background" Value="#7c664c" />
                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                 <Setter Property="VerticalContentAlignment" Value="Stretch" />
-                <Setter Property="ContentTemplate">
+                <!--<Setter Property="ContentTemplate">
                     <Setter.Value>
                         <DataTemplate>
-                            <Button Content="{TemplateBinding Content}"
-                                    Background="{Binding Path=Background, RelativeSource={RelativeSource AncestorType={x:Type hexGridControl:HexItem}}}"
-                                    Click="ButtonBase_OnClick" />
+                            <Button Command="{Binding CaptureTheCell}"
+                                    Background="{Binding Path=Background,  RelativeSource={RelativeSource AncestorType={x:Type hexGridControl:HexItem}}}">
+                                <Button.Content>
+                                    <TextBlock
+                                        Text="{Binding Path=Content.rowAndColumn,  RelativeSource={RelativeSource AncestorType={x:Type hexGridControl:HexItem}}}">
+                                    </TextBlock>
+                                </Button.Content>
+                            </Button>
                         </DataTemplate>
                     </Setter.Value>
-                </Setter>
+                </Setter>-->
             </Style>
 
-            <Style TargetType="Button">
-
-            </Style>
+            <Style TargetType="Button" />
         </Grid.Resources>
 
         <Grid Grid.Row="0">
@@ -54,64 +65,60 @@
                 <RowDefinition Height="0.5*" />
             </Grid.RowDefinitions>
 
-            <Viewbox Margin="0 30 0 0 " Grid.Column="0" Stretch="Fill">
-                <Grid>
+          
+                <Grid  Margin="0 30 0 0" Grid.Column="0" >
 
                     <StackPanel Grid.Row="0">
 
                         <Border Padding="5px" BorderThickness="3px" BorderBrush="#7c664c">
                             <StackPanel>
                                 <TextBlock FontSize="15px" Foreground="AntiqueWhite" Background="Green"
-                                           Text="Player 1 Name" TextAlignment="Center">
-                                </TextBlock>
-                                <TextBlock Background="Transparent" FontSize="25px" TextAlignment="Center" Text="1300"></TextBlock>
+                                           Text="{Binding Game.GreenUser.USER_LOGIN}" TextAlignment="Center" />
+                                <TextBlock Background="Transparent" FontSize="25px" TextAlignment="Center" Text="{Binding GreenUserScore , Mode=TwoWay}" />
                             </StackPanel>
                         </Border>
                         <Border Padding="5px" BorderThickness="3px" BorderBrush="#7c664c">
                             <StackPanel>
-                                <TextBlock FontSize="15px" Foreground="AntiqueWhite" Background="Red"
-                                           Text="Player 1 Name" TextAlignment="Center">
-                                </TextBlock>
-                                <TextBlock Background="Transparent" FontSize="25px" TextAlignment="Center" Text="13220"></TextBlock>
+                                <TextBlock  FontSize="15px" Foreground="AntiqueWhite" Background="Red"
+                                           Text="{Binding Game.RedUser.USER_LOGIN}" TextAlignment="Center" />
+                                <TextBlock Background="Transparent" FontSize="25px" TextAlignment="Center" Text="{Binding RedUserScore, Mode=TwoWay}" />
                             </StackPanel>
                         </Border>
                         <Border Padding="5px" BorderThickness="3px" BorderBrush="#7c664c">
                             <StackPanel>
                                 <TextBlock FontSize="15px" Foreground="AntiqueWhite" Background="Blue"
-                                           Text="Player 1 Name" TextAlignment="Center">
-                                </TextBlock>
-                                <TextBlock Background="Transparent" FontSize="25px" TextAlignment="Center" Text="1300"></TextBlock>
+                                           Text="{Binding Game.BlueUser.USER_LOGIN}" TextAlignment="Center" />
+                                <TextBlock Background="Transparent" FontSize="25px" TextAlignment="Center" Text="{Binding BlueUserScore, Mode=TwoWay}" />
                             </StackPanel>
                         </Border>
                     </StackPanel>
 
                 </Grid>
-            </Viewbox>
+       
 
-
-
-
-
-            <ScrollViewer Margin="5px"  Grid.Row="1" Height="239" VerticalScrollBarVisibility="Auto">
-                <TextBox IsReadOnly="True" FontSize="15px"  VerticalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Text="Здесь будет лог" Background="AntiqueWhite"  />
+            <ScrollViewer Margin="5px" Grid.Row="1" Height="239" VerticalScrollBarVisibility="Auto">
+                <TextBox IsReadOnly="True" FontSize="15px" VerticalAlignment="Stretch" AcceptsReturn="True"
+                         TextWrapping="Wrap" Text="{Binding LogText,Mode=TwoWay}" Background="AntiqueWhite" />
             </ScrollViewer>
 
-            <Viewbox Grid.Row="2">
-                <Button Click="ButtonMainMenu_OnClick"   Content="В главное меню"></Button>
-            </Viewbox>
-
+            <Border Grid.Row="2" Grid.Column="0" BorderThickness="5px" BorderBrush="Black">
+                <Viewbox>
+                    <TextBlock Foreground="AntiqueWhite"
+                                   Text="{Binding CurrentRound,Mode=TwoWay }" />
+                </Viewbox>
+            </Border>
 
 
         </Grid>
 
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="13*"/>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="13*" />
+                <RowDefinition Height="3*" />
             </Grid.RowDefinitions>
 
-            <Viewbox  Grid.Row="0" Margin="0,50,0,0" VerticalAlignment="Top" Grid.RowSpan="2">
-                <Grid Grid.Column="1" Background="Transparent">
+            <Viewbox Grid.Row="0" Margin="0,50,0,0" VerticalAlignment="Top" Grid.RowSpan="2">
+                <Grid Background="Transparent">
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition Height="Auto" />
@@ -123,47 +130,361 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <hexGridControl:HexGrid Grid.Row="1" Grid.Column="1"
-                                        RowCount="7" ColumnCount="7" Orientation="Horizontal">
-                        <hexGridControl:HexItem Grid.Row="0" Grid.Column="1" Content="2" />
-                        <hexGridControl:HexItem Grid.Row="0" Grid.Column="3" Content="2" />
-                        <hexGridControl:HexItem Grid.Row="0" Grid.Column="5" Content="2" />
+                         <hexGridControl:HexGrid Grid.Row="1" Grid.Column="1"
+                                            RowCount="7" ColumnCount="7" Orientation="Horizontal">
+
+                     
+                        
+                        <hexGridControl:HexItem  Grid.Row="0" Grid.Column="1">
+
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button01" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button01 }"
+                                        Content="{Binding CellsMatrix[0].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[0].Brush,Mode=TwoWay}" 
+                                        Foreground="{Binding CellsMatrix[0].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        
+                        <hexGridControl:HexItem  Grid.Row="0" Grid.Column="3">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button03" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button03 }"
+                                        Content="{Binding CellsMatrix[1].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[1].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[1].ForegroundBrush,Mode=TwoWay}">
+                                      
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="0" Grid.Column="5" Name="_05">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button05" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button05 }"
+                                        Content="{Binding CellsMatrix[2].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[2].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[2].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
 
 
-                        <hexGridControl:HexItem Grid.Row="1" Grid.Column="0" Content="1" />
-                        <hexGridControl:HexItem Grid.Row="1" Grid.Column="1" Content="0" Background="#7c664c" />
+                        <hexGridControl:HexItem Grid.Row="1" Grid.Column="0" Name="_10">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button10" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button10 }"
+                                        Content="{Binding CellsMatrix[3].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[3].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[3].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="1" Grid.Column="1" Name="_11" Background="#7c664c">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button11" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button11 }"
+                                        Content="{Binding CellsMatrix[4].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[4].Brush,Mode=TwoWay}" Foreground="{Binding CellsMatrix[4].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
 
 
-                        <hexGridControl:HexItem Grid.Row="1" Grid.Column="2" Content="3" />
-                        <hexGridControl:HexItem Grid.Row="1" Grid.Column="3" Content="3" />
-                        <hexGridControl:HexItem Grid.Row="1" Grid.Column="4" Content="3" />
-                        <hexGridControl:HexItem Grid.Row="1" Grid.Column="4" Content="7" />
-                        <hexGridControl:HexItem Grid.Row="1" Grid.Column="5" Content="7" />
-                        <hexGridControl:HexItem Grid.Row="1" Grid.Column="6" Content="7" />
+                        <hexGridControl:HexItem Grid.Row="1" Grid.Column="2" Name="_12">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button12" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button12 }"
+                                        Content="{Binding CellsMatrix[5].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[5].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[5].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="1" Grid.Column="3" Name="_13">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button13" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button13 }"
+                                        Content="{Binding CellsMatrix[6].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[6].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[6].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="1" Grid.Column="4" Name="_14">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button14" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button14 }"
+                                        Content="{Binding CellsMatrix[7].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[7].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[7].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="1" Grid.Column="5" Name="_15">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button15" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button15 }"
+                                        Content="{Binding CellsMatrix[8].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[8].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[8].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="1" Grid.Column="6" Name="_16">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button16" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button16 }"
+                                        Content="{Binding CellsMatrix[9].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[9].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[9].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
 
-                        <hexGridControl:HexItem Grid.Row="2" Grid.Column="0" Content="6" />
-                        <hexGridControl:HexItem Grid.Row="2" Grid.Column="1" Content="5" />
-                        <hexGridControl:HexItem Grid.Row="2" Grid.Column="2" Content="4" />
-                        <hexGridControl:HexItem Grid.Row="2" Grid.Column="3" Content="8" />
-                        <hexGridControl:HexItem Grid.Row="2" Grid.Column="4" Content="8" />
-                        <hexGridControl:HexItem Grid.Row="2" Grid.Column="5" Content="2" />
-                        <hexGridControl:HexItem Grid.Row="2" Grid.Column="6" Content="7" />
+                        <hexGridControl:HexItem Grid.Row="2" Grid.Column="0" Name="_20">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button20" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button20 }"
+                                        Content="{Binding CellsMatrix[10].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[10].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[10].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="2" Grid.Column="1" Name="_21">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button21" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button21 }"
+                                        Content="{Binding CellsMatrix[11].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[11].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[11].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="2" Grid.Column="2" Name="_22">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button22" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button22 }"
+                                        Content="{Binding CellsMatrix[12].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[12].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[12].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="2" Grid.Column="3" Name="_23">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button23" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button23 }"
+                                        Content="{Binding CellsMatrix[13].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[13].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[13].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="2" Grid.Column="4" Name="_24">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button24" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button24 }"
+                                        Content="{Binding CellsMatrix[14].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[14].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[14].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="2" Grid.Column="5" Name="_25">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button25" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button25 }"
+                                        Content="{Binding CellsMatrix[15].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[15].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[15].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="2" Grid.Column="6" Name="_26">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button26" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button26 }"
+                                        Content="{Binding CellsMatrix[16].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[16].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[16].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
 
-                        <hexGridControl:HexItem Grid.Row="3" Grid.Column="0" Content="6" />
-                        <hexGridControl:HexItem Grid.Row="3" Grid.Column="1" Content="5" />
-                        <hexGridControl:HexItem Grid.Row="3" Grid.Column="2" Content="4" />
-                        <hexGridControl:HexItem Grid.Row="3" Grid.Column="3" Content="4" />
-                        <hexGridControl:HexItem Grid.Row="3" Grid.Column="4" Content="4" />
-                        <hexGridControl:HexItem Grid.Row="3" Grid.Column="5" Content="4" />
-                        <hexGridControl:HexItem Grid.Row="3" Grid.Column="6" Content="7" />
+                        <hexGridControl:HexItem Grid.Row="3" Grid.Column="0" Name="_30">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button30" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button30 }"
+                                        Content="{Binding CellsMatrix[17].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[17].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[17].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="3" Grid.Column="1" Name="_31">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button31" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button31 }"
+                                        Content="{Binding CellsMatrix[18].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[18].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[18].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="3" Grid.Column="2" Name="_32">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button32" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button32 }"
+                                        Content="{Binding CellsMatrix[19].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[19].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[19].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="3" Grid.Column="3" Name="_33">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button33" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button33 }"
+                                        Content="{Binding CellsMatrix[20].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[20].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[20].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="3" Grid.Column="4" Name="_34">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button34" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button34 }"
+                                        Content="{Binding CellsMatrix[21].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[21].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[21].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="3" Grid.Column="5" Name="_35">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button35" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button35 }"
+                                        Content="{Binding CellsMatrix[22].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[22].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[22].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="3" Grid.Column="6" Name="_36">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button36" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button36 }"
+                                        Content="{Binding CellsMatrix[23].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[23].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[23].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
 
-                        <hexGridControl:HexItem Grid.Row="4" Grid.Column="0" Content="14" />
-                        <hexGridControl:HexItem Grid.Row="4" Grid.Column="1" Content="14" />
-                        <hexGridControl:HexItem Grid.Row="4" Grid.Column="2" Content="14" />
-                        <hexGridControl:HexItem Grid.Row="4" Grid.Column="3" Content="14" />
-                        <hexGridControl:HexItem Grid.Row="4" Grid.Column="4" Content="14" />
-                        <hexGridControl:HexItem Grid.Row="4" Grid.Column="5" Content="14" />
-                        <hexGridControl:HexItem Grid.Row="4" Grid.Column="6" Content="7" />
+                        <hexGridControl:HexItem Grid.Row="4" Grid.Column="0" Name="_40">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button40" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button40 }"
+                                        Content="{Binding CellsMatrix[24].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[24].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[24].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="4" Grid.Column="1" Name="_41">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button41" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button41 }"
+                                        Content="{Binding CellsMatrix[25].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[25].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[25].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="4" Grid.Column="2" Name="_42">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button42" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button42 }"
+                                        Content="{Binding CellsMatrix[26].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[26].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[26].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="4" Grid.Column="3" Name="_43">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button43" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button43 }"
+                                        Content="{Binding CellsMatrix[27].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[27].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[27].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="4" Grid.Column="4" Name="_44">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button44" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button44 }"
+                                        Content="{Binding CellsMatrix[28].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[28].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[28].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="4" Grid.Column="5" Name="_45">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button45" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button45 }"
+                                        Content="{Binding CellsMatrix[29].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[29].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[29].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
+                        <hexGridControl:HexItem Grid.Row="4" Grid.Column="6" Name="_46">
+                            <hexGridControl:HexItem.Content>
+                                <Button Name="Button46" Command="{Binding CaptureTheCell}"
+                                        CommandParameter="{Binding Content,  ElementName=Button46 }"
+                                        Content="{Binding CellsMatrix[30].RowAndColumn}"
+                                        Background="{Binding CellsMatrix[30].Brush,Mode=TwoWay}"
+                                        Foreground="{Binding CellsMatrix[30].ForegroundBrush,Mode=TwoWay}">
+                                </Button>
+                                    
+                            </hexGridControl:HexItem.Content>
+                        </hexGridControl:HexItem>
 
                     </hexGridControl:HexGrid>
 
@@ -172,26 +493,42 @@
             </Viewbox>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="459*"/>
-                    <ColumnDefinition Width="176*"/>
+                    <ColumnDefinition Width="459*" />
+                    <ColumnDefinition Width="176*" />
                 </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right"
+                        VerticalAlignment="Center">
                 
-                <Border Grid.Column="1" BorderThickness="10px" BorderBrush="Black">
-                    <Viewbox>
-                        <TextBlock Foreground="AntiqueWhite" Text="Ход : 23" ></TextBlock>
-                    </Viewbox>
-                </Border>
+                    <ToggleButton
+                    Margin="10 0 0 0"
+                    Width="80"
+                    Height="80"
+                    Style="{StaticResource MaterialDesignActionToggleButton}"
+                    Command="{Binding SwitchVolume}"
+                    IsChecked="{Binding VolumeChecked,Mode=TwoWay}"
+                    ToolTip="MaterialDesignActionLightToggleButton">
+                        <materialDesign:ToggleButtonAssist.OnContent>
+                            <Image Source="../../Resources/Images/SoundOff.png" />
+                        </materialDesign:ToggleButtonAssist.OnContent>
+                        <ToggleButton.Content>
+                            <Image Source="../../Resources/Images/SoundOn.jpg" />
+                        </ToggleButton.Content>
+                    </ToggleButton>
+
+
+                  
+
+
+                </StackPanel>
 
             </Grid>
-            
-        </Grid>
 
-            
         </Grid>
-            
-        
-
    
+
+
+    </Grid>
 
 
 </Page>

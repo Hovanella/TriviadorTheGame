@@ -1,0 +1,161 @@
+﻿<Window x:Class="TriviadorTheGame.Views.GameplayPage.QuestionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:viewModels="clr-namespace:TriviadorTheGame.ViewModels"
+        mc:Ignorable="d"
+        Title="QuestionWindow" Height="480" Width="800"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        >
+    <Window.DataContext>
+        <viewModels:QuestionWindowViewModel />
+    </Window.DataContext>
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="127*"/>
+            <RowDefinition Height="282*"/>
+            <RowDefinition Height="41*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush  ImageSource="../../Resources/Images/QuestionBackGround.jpg"></ImageBrush>
+        </Grid.Background>
+
+   
+        <ScrollViewer Grid.Row="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
+            <TextBlock
+                TextWrapping="Wrap"
+                Width="700"
+                Grid.Row="0" VerticalAlignment="Stretch"
+                Opacity="1"
+                TextAlignment="Center"
+                HorizontalAlignment="Stretch" 
+                Margin="10 0 10 0"
+                Height="100px"
+                Foreground="Tomato"
+                Background="AntiqueWhite"
+                FontSize="25px"
+                Text="{Binding QuestionText,Mode=TwoWay}"
+                />
+            </ScrollViewer>
+
+
+
+        <Grid Grid.Row="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="0.5*"/>
+
+
+            </Grid.RowDefinitions>
+
+            
+            <Button Grid.Row="0" VerticalAlignment="Top"
+                    Name="FirstAnswerButton"
+                    MouseDown ="FirstAnswerButton_OnClick"
+                    
+                CommandParameter="{Binding FirstAnswer}"
+                HorizontalAlignment="Stretch" 
+                Margin="80 0 80 0"
+                Height="70px"
+                Foreground="Black"
+                Background="{Binding FirstAnswerBrush,Mode=TwoWay}"
+
+                Style="{StaticResource MaterialDesignRaisedLightButton}">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
+                <TextBlock
+                FontSize="15px"
+                Name="FirstAnswer"
+                Text="{Binding FirstAnswer,Mode=TwoWay}"
+            />
+                </ScrollViewer>
+            </Button>
+            <Button Grid.Row="1" VerticalAlignment="Top"
+                    Name="SecondAnswerButton"
+                    MouseDown="SecondAnswerButton_OnClick"
+                CommandParameter="{Binding SecondAnswer}"
+                HorizontalAlignment="Stretch" 
+                Margin="80 0 80 0"
+                Height="70px"
+                Foreground="Black"
+                Background="{Binding SecondAnswerBrush,Mode=TwoWay}"
+
+                Style="{StaticResource MaterialDesignRaisedLightButton}">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
+                <TextBlock
+                FontSize="15px"
+                Name="SecondAnswer"
+                Text="{Binding SecondAnswer,Mode=TwoWay}"/>
+                </ScrollViewer>
+            </Button>
+            <Button Grid.Row="2" VerticalAlignment="Top"
+                    MouseDown="ThirdAnswerButton_OnClick"
+                CommandParameter="{Binding ThirdAnswer}"
+                HorizontalAlignment="Stretch" 
+                Margin="80 0 80 0"
+                Height="70px"
+                Foreground="Black"
+                Name="ThirdAnswerButton"
+                Background="{Binding ThirdAnswerBrush,Mode=TwoWay}"
+
+                Style="{StaticResource MaterialDesignRaisedLightButton}">
+                
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
+                <TextBlock
+                FontSize="15px"
+                Name="ThirdAnswer" 
+                Text="{Binding ThirdAnswer,Mode=TwoWay}"/>
+                </ScrollViewer>
+            </Button>
+            <Button Grid.Row="3" VerticalAlignment="Top"
+                    MouseDown="FourthAnswerButton_OnClick"
+                CommandParameter="{Binding FourthAnswer}"
+                HorizontalAlignment="Stretch" 
+                Margin="80 0 80 0"
+                Height="70px"
+                Foreground="Black"
+                Name="FourthAnswerButton"
+                Background="{Binding FourthAnswerBrush,Mode=TwoWay}"
+
+                Style="{StaticResource MaterialDesignRaisedLightButton}">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
+                <TextBlock
+                FontSize="15px"
+                Name="FourthAnswer" 
+                Text="{Binding FourthAnswer,Mode=TwoWay}"/>
+                </ScrollViewer>
+            </Button>
+            
+            <Button  Grid.Row="4" VerticalAlignment="Top"
+                    
+                    HorizontalAlignment="Center" 
+                   
+                    Height="30"
+                    Width="200"
+                    MouseDown="CloseWindow_OnClick"
+                    Margin="80 0 80 0"
+                    Name="CloseWindow"
+                    Foreground="Tomato"
+            
+                    Background="AntiqueWhite"
+
+                    Style="{StaticResource MaterialDesignRaisedLightButton}">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
+                    <TextBlock
+                        TextAlignment="Justify"
+                        FontSize="15px"
+                        Text="Закрыть вопрос"/>
+                </ScrollViewer>
+            </Button>
+            
+        </Grid>
+    </Grid>
+
+
+
+</Window>

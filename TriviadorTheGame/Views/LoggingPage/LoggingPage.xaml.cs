@@ -1,16 +1,11 @@
-﻿using System;
-using System.Media;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Media;
-using Microsoft.Win32;
-using TriviadorTheGame.Models;
 
 namespace TriviadorTheGame.Views
 {
     /// <summary>
-    /// Interaction logic for LoggingPage.xaml
+    ///     Interaction logic for LoggingPage.xaml
     /// </summary>
     public partial class LoggingPage : Page
     {
@@ -21,7 +16,7 @@ namespace TriviadorTheGame.Views
 
         private void ToggleButton_OnChecked(object sender, RoutedEventArgs e)
         {
-            if (sender is ToggleButton button && button.IsChecked.Value == true)
+            if (sender is ToggleButton button && button.IsChecked.Value)
             {
                 ConfirmPasswordTextBox.Visibility = Visibility.Collapsed;
                 ConfirmPasswordTextBlock.Visibility = Visibility.Collapsed;
@@ -32,6 +27,5 @@ namespace TriviadorTheGame.Views
                 ConfirmPasswordTextBlock.Visibility = Visibility.Visible;
             }
         }
-        
     }
 }

@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TriviadorTheGame.ViewModels.CreateLobbyLoggingWindowViewModel" Collapsed="true">
+    <Position X="19.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAACQAAAAAQA=</HashCode>
+      <FileName>ViewModels\CreateLobbyLoggingWindowViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TriviadorTheGame.ViewModels.CreatePackWindowViewModel" Collapsed="true">
+    <Position X="18" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIBAAAAAAAAAAAAAAAAAAEAAACAAAAA=</HashCode>
+      <FileName>ViewModels\CreatePackWindowViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TriviadorTheGame.ViewModels.CreateQuestionWindowViewModel" Collapsed="true">
+    <Position X="18" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAHCAAAAAAgAIAAAAAAAIAgAAAIAAAAAACAAA=</HashCode>
+      <FileName>ViewModels\CreateQuestionWindowViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TriviadorTheGame.ViewModels.GameLobbyViewModel" Collapsed="true">
+    <Position X="14.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAQAAAAAAAFAIAAAAAAEBAQABACCAAAAAiIAAAAAI=</HashCode>
+      <FileName>ViewModels\GameLobbyViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TriviadorTheGame.ViewModels.GameplayViewModel" Collapsed="true">
+    <Position X="14.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACIIAAAAAAgEARgEAAAAAAgAACoAIAQABAABRAEBAAA=</HashCode>
+      <FileName>ViewModels\GameplayViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TriviadorTheGame.ViewModels.LoggingPageViewModel" Collapsed="true">
+    <Position X="14.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAEAEAAAAAQQACAAEQAAAAIAA=</HashCode>
+      <FileName>ViewModels\LoggingPageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TriviadorTheGame.ViewModels.MainMenuViewModel" Collapsed="true">
+    <Position X="16" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAyAAAEEAAAAAAAAACBAAAgBAAAAQAAAAAAAAIAAgAg=</HashCode>
+      <FileName>ViewModels\MainMenuViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TriviadorTheGame.ViewModels.MainWindowViewModel" Collapsed="true">
+    <Position X="18" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAIAAAAAAAAAAAAAAAAAAQAAAAABAAAAACAI=</HashCode>
+      <FileName>ViewModels\MainWindowViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TriviadorTheGame.ViewModels.QuestionArchiveViewModel" Collapsed="true">
+    <Position X="19.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwAAAAARAQQACEAAAAAAAEECIQEQAAECAAQAAIgAAA=</HashCode>
+      <FileName>ViewModels\QuestionArchiveViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TriviadorTheGame.ViewModels.QuestionWindowViewModel" Collapsed="true">
+    <Position X="19.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAI4oAAAAAEACBgAAACkAACIACIgEEAAAQAAAKBQA=</HashCode>
+      <FileName>ViewModels\QuestionWindowViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TriviadorTheGame.ViewModels.RedactorViewModel" Collapsed="true">
+    <Position X="16" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAiBAQAIDIAIEGUBAEAASAAAABYEQAAACACQAAIgAAQ=</HashCode>
+      <FileName>ViewModels\RedactorViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TriviadorTheGame.ViewModels.SelectQuestionsWindowViewModel" Collapsed="true">
+    <Position X="16" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAQAAAEAgAAAAAAECAAEAAAEAAAQAAIgEAA=</HashCode>
+      <FileName>ViewModels\SelectQuestionsWindowViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TriviadorTheGame.ViewModels.BaseViewModel.BaseViewModel" Collapsed="true">
+    <Position X="17" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\BaseViewModel\BaseViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TriviadorTheGame.ViewModels.ChangeUserInfoWindowViewModel" Collapsed="true">
+    <Position X="18" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ChangeUserInfoWindowViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TriviadorTheGame.ViewModels.UserStatiscticsViewModel" Collapsed="true">
+    <Position X="17" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwAACAAAAAAAAAAAAACAAAICQAESIBgAIAAAAYgAAQ=</HashCode>
+      <FileName>ViewModels\UserStatiscticsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TriviadorTheGame.ViewModels.BaseViewModel.ChangePasswordAndLoginWindowViewModel" Collapsed="true">
+    <Position X="16" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\BaseViewModel\ChangePasswordAndLoginWindowViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

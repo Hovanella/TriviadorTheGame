@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6294b8bb70c74db6b914f028e6a6c714" Name="Diagram1" ZoomLevel="81">
-        <EntityTypeShape EntityType="TriviadorTheGameDBModel.Question" Width="1.5" PointX="10.25" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="TriviadorTheGameDBModel.QuestionsPack" Width="1.5" PointX="14.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TriviadorTheGameDBModel.QuestionsToPack" Width="1.5" PointX="14.625" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TriviadorTheGameDBModel.User" Width="1.5" PointX="10.375" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TriviadorTheGameDBModel.UserStatistic" Width="1.5" PointX="10.375" PointY="1.125" IsExpanded="true" />
+      <Diagram DiagramId="7aac8a95d126423c9ca83d0882a4910a" Name="Diagram1">
+        <EntityTypeShape EntityType="TriviadorTheGameDBModel.Question" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TriviadorTheGameDBModel.QuestionsPack" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TriviadorTheGameDBModel.QuestionsToPack" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="TriviadorTheGameDBModel.User" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TriviadorTheGameDBModel.UserStatistic" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
         <AssociationConnector Association="TriviadorTheGameDBModel.FK__Questions__CREAT__2C3393D0" ManuallyRouted="false" />
         <AssociationConnector Association="TriviadorTheGameDBModel.FK__Questions__QUEST__31EC6D26" ManuallyRouted="false" />
         <AssociationConnector Association="TriviadorTheGameDBModel.FK__Questions__CREAT__2F10007B" ManuallyRouted="false" />

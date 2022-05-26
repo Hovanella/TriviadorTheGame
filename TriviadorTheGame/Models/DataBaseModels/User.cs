@@ -21,17 +21,14 @@ namespace TriviadorTheGame.Models.DataBaseModels
             this.QuestionsPacks = new HashSet<QuestionsPack>();
             this.UserStatistics = new HashSet<UserStatistic>();
         }
-        public User(string name, string password,string userRole)
+
+        public User(string login, string password, string role)
         {
-            USER_LOGIN = name;
+            USER_ROLE=role;
+            USER_LOGIN = login;
             USER_PASSWORD = password;
-            USER_ROLE = userRole;
-        
-            this.Questions = new HashSet<Question>();
-            this.QuestionsPacks = new HashSet<QuestionsPack>();
-            this.UserStatistics = new HashSet<UserStatistic>();
         }
-    
+
         public int USER_ID { get; set; }
         public string USER_LOGIN { get; set; }
         public string USER_PASSWORD { get; set; }

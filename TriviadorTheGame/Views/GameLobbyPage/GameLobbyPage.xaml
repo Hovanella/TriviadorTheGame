@@ -3,18 +3,17 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:TriviadorTheGame.Views.GameLobbyPage"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:viewModels="clr-namespace:TriviadorTheGame.ViewModels"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GameLobbyPage"
-      FontFamily="{StaticResource Medieval}">   
+      FontFamily="{StaticResource Medieval}">
 
     <Page.DataContext>
-        <viewModels:GameLobbyViewModel/>
+        <viewModels:GameLobbyViewModel />
     </Page.DataContext>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="4*" />
@@ -23,192 +22,126 @@
 
 
         <Grid.Background>
-            <ImageBrush ImageSource="../../Resources/Images/GameLobbyBackgroundImage.jpg">
-            </ImageBrush>
+            <ImageBrush ImageSource="../../Resources/Images/GameLobbyBackgroundImage.jpg" />
         </Grid.Background>
 
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="21*" />
-                <RowDefinition Height="19*" />
+              
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="234*" />
-                <ColumnDefinition Width="337*" />
+                <ColumnDefinition Width="387*" />
                 <ColumnDefinition Width="229*" />
             </Grid.ColumnDefinitions>
 
 
-            <Viewbox Grid.Row="0" Grid.Column="0" Margin="20">
-                <Border HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        CornerRadius="5" BorderThickness="3px" BorderBrush="#7c664c" Height="106" Width="220">
+            <StackPanel VerticalAlignment="Center"  Grid.Column="1">
 
-                    <Viewbox Height="100px" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill">
-
-                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                                    Grid.Column="0">
-                            <StackPanel.Background>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="#FF9E9968" Offset="0.573" />
-                                    <GradientStop Color="#FFB58C5B" Offset="0.228" />
-                                </LinearGradientBrush>
-                            </StackPanel.Background>
-                            <TextBlock Padding="10px" Text="Игрок1 : Не опознан" FontSize="50px" Foreground="White"></TextBlock>
-
-                            <ToggleButton
+                <Border Margin="0 20 0 0 " Padding="5px" BorderThickness="3px" BorderBrush="#7c664c">
+                    <StackPanel>
+                        <TextBlock FontSize="25px" Foreground="AntiqueWhite" Background="Green"
+                                           Text="{Binding HostUser.USER_LOGIN}" TextAlignment="Center" />
+                  
+                        
+                    </StackPanel>
+                </Border>
+                <Border  Padding="5px" BorderThickness="3px" BorderBrush="#7c664c">
+                    <StackPanel>
+                        <TextBlock FontSize="25px" Foreground="AntiqueWhite" Background="Red"
+                                           Text="{Binding FirstFriendUser.USER_LOGIN}" TextAlignment="Center" />
+                      
+                        <ToggleButton
                                 HorizontalAlignment="Left"
-                                VerticalAlignment="Bottom"
-                                Width="50px"
-                                Height="40px"
+                                Width="40" Height="40"
                                 Background="Transparent"
-                                Style="{StaticResource MaterialDesignActionToggleButton}"
-                                ToolTip="MaterialDesignActionLightToggleButton">
-                                <materialDesign:ToggleButtonAssist.OnContent>
-                                    <Image Source="../../Resources/Images/CancelLogin.png"></Image>
-                                </materialDesign:ToggleButtonAssist.OnContent>
-                                <ToggleButton.Content>
-
-                                    <Image Source="../../Resources/Images/LogAccount.png"></Image>
-                                </ToggleButton.Content>
-                            </ToggleButton>
-                        </StackPanel>
-
-
-                    </Viewbox>
-                </Border>
-
-            </Viewbox>
-
-            <Viewbox Grid.Row="0" Grid.Column="1" Margin="20">
-                <Border Grid.Column="1" HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        CornerRadius="5" BorderThickness="3px" BorderBrush="#7c664c" Height="106" Width="330">
-
-                    <Viewbox Height="100px" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill">
-
-                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                                    Grid.Column="0">
-                            <StackPanel.Background>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="#FF9E9968" Offset="0.573" />
-                                    <GradientStop Color="#FFB58C5B" Offset="0.228" />
-                                </LinearGradientBrush>
-                            </StackPanel.Background>
-                            <TextBlock Padding="10px" Text="{Binding HostUser.USER_LOGIN, Mode=TwoWay  }" FontSize="50px" Foreground="White"></TextBlock>
-                            
-
-                            <ToggleButton Visibility="Hidden"
-                                          HorizontalAlignment="Left"
-                                          VerticalAlignment="Bottom"
-                                          Width="50px"
-                                          Height="40px"
-                                          Background="Transparent"
-                                          Style="{StaticResource MaterialDesignActionToggleButton}"
-                                          ToolTip="MaterialDesignActionLightToggleButton">
-                                <materialDesign:ToggleButtonAssist.OnContent>
-                                    <Image Source="../../Resources/Images/CancelLogin.png"></Image>
-                                </materialDesign:ToggleButtonAssist.OnContent>
-                                <ToggleButton.Content>
-
-                                    <Image Source="../../Resources/Images/LogAccount.png"></Image>
-                                </ToggleButton.Content>
-                            </ToggleButton>
-                        </StackPanel>
-
-
-                    </Viewbox>
-                </Border>
-            </Viewbox>
-
-            <Viewbox Grid.Row="0" Grid.Column="2" Margin="20">
-                <Border Grid.Column="2" HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        CornerRadius="5" BorderThickness="3px" BorderBrush="#7c664c" Height="106" Width="199">
-
-                    <Viewbox Height="100px" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill">
-
-                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                                    Grid.Column="0">
-                            <StackPanel.Background>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="#FF9E9968" Offset="0.573" />
-                                    <GradientStop Color="#FFB58C5B" Offset="0.228" />
-                                </LinearGradientBrush>
-                            </StackPanel.Background>
-                            <TextBlock Padding="10px" Text="Игрок1 : Не опознан" FontSize="50px" Foreground="White"></TextBlock>
-
-                            <ToggleButton
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Bottom"
-                                Width="50px"
-                                Height="40px"
-                                Background="Transparent"
-                                Style="{StaticResource MaterialDesignActionToggleButton}"
-                                ToolTip="MaterialDesignActionLightToggleButton">
-                                <materialDesign:ToggleButtonAssist.OnContent>
-                                    <Image Source="../../Resources/Images/CancelLogin.png"></Image>
-                                </materialDesign:ToggleButtonAssist.OnContent>
-                                <ToggleButton.Content>
-
-                                    <Image Source="../../Resources/Images/LogAccount.png"></Image>
-                                </ToggleButton.Content>
-                            </ToggleButton>
-                        </StackPanel>
-
-
-                    </Viewbox>
-                </Border>
-            </Viewbox>
-
-            <Viewbox Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="20 0 20 0">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <TextBlock TextWrapping="Wrap" FontSize="25px"
-                               Margin="0 0 0 20" Text="Выберите количество раундов">
-                    </TextBlock>
-                    <TextBox TextAlignment="Center" Width="100px" FontSize="25px" Height="50px"
-                             Background="AntiqueWhite" />
-                </StackPanel>
-            </Viewbox>
-
-
-            <Viewbox Grid.Row="1" Grid.Column="1" VerticalAlignment="Top">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 0 0 0">
-                    <TextBlock FontSize="25px" Text="Пак вопросов для игры : Не выбран "></TextBlock>
-                    <Button Height="50px"
-                            Foreground="Tomato"
-                            Background="AntiqueWhite"
-                            Style="{StaticResource MaterialDesignRaisedLightButton}">
-                        <TextBlock
-                            FontSize="23px"
-                            Text="Выбрать пак вопросов" />
-                    </Button>
-                </StackPanel>
-            </Viewbox>
-
-            <Viewbox Grid.Row="1" Grid.Column="2" VerticalAlignment="Top">
-                <Border Grid.Row="1" Grid.Column="2" BorderBrush="#7c664c" BorderThickness="2px"
-                        VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20 0 20 0">
-                    <Viewbox>
-                        <StackPanel Width="200PX" Background="AntiqueWhite" HorizontalAlignment="Center"
-                                    VerticalAlignment="Top">
-                            <TextBlock Text="Режим игры" TextAlignment="Center" FontSize="30px"></TextBlock>
-                            <RadioButton
-                                Style="{StaticResource MaterialDesignTabRadioButtonTop}"
-                                BorderBrush="#7c664c"
-                                Margin="4"
-                                IsChecked="True"
-                                Content="Рейтинговая" />
-                            <RadioButton
-                                Style="{StaticResource MaterialDesignTabRadioButtonTop}"
-                                BorderBrush="#7c664c"
-                                Margin="4"
+                                Command="{Binding FirstPlayerLoggingCommand}"
                                 IsChecked="False"
-                                Content="Товарищеская" />
-                        </StackPanel>
-                    </Viewbox>
+                                Style="{StaticResource MaterialDesignActionToggleButton}"
+                                ToolTip="MaterialDesignActionLightToggleButton">
+                            <materialDesign:ToggleButtonAssist.OnContent>
+                                <Image Source="../../Resources/Images/CancelLogin.png" />
+                            </materialDesign:ToggleButtonAssist.OnContent>
+                            <ToggleButton.Content>
+
+                                <Image  Source="../../Resources/Images/LogAccount.png" />
+                            </ToggleButton.Content>
+                        </ToggleButton>
+                    </StackPanel>
                 </Border>
-            </Viewbox>
+                <Border Padding="5px" BorderThickness="3px" BorderBrush="#7c664c">
+                    <StackPanel>
+                        <TextBlock FontSize="25px" Foreground="AntiqueWhite" Background="Blue"
+                                   Text="{Binding SecondFriendUser.USER_LOGIN}"  TextAlignment="Center" />
+                   
+                        <ToggleButton
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom"
+                                Width="40" Height="40"
+                                Background="Transparent"
+                                Command="{Binding SecondPlayerLoggingCommand}"
+                                IsChecked="False"
+                                Style="{StaticResource MaterialDesignActionToggleButton}"
+                                ToolTip="MaterialDesignActionLightToggleButton">
+                            <materialDesign:ToggleButtonAssist.OnContent>
+                                <Image Source="../../Resources/Images/CancelLogin.png" />
+                            </materialDesign:ToggleButtonAssist.OnContent>
+                            <ToggleButton.Content>
+
+                                <Image  Source="../../Resources/Images/LogAccount.png" />
+                            </ToggleButton.Content>
+                        </ToggleButton>
+                    </StackPanel>
+                </Border>
+                <TextBlock FontSize="25px" Text="{DynamicResource PackForGame}" />
+                <ComboBox
+                        SelectedItem="{Binding SelectedPack,Mode=TwoWay}"
+                        materialDesign:HintAssist.Hint="{DynamicResource ChoosePack}"
+                        FontSize="25px"
+                        materialDesign:HintAssist.FontFamily="Verdana"
+                        MinWidth="72"
+                        ItemsSource="{Binding PacksList,Mode=TwoWay}"
+                        Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding QUESTIONS_PACK_NAME,Mode=TwoWay}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock TextWrapping="Wrap" FontSize="25px"
+                               Margin="0 0 0 20" Text="{DynamicResource ChooseRoundsNumber}" />
+                <ComboBox
+                    FontSize="25px"
+                        MinWidth="50"
+                        ItemsSource="{Binding NumberOfRounds,Mode=TwoWay}">
+                    <ComboBox.SelectedItem>
+                        <Binding
+                                Path="SelectedNumberOfRounds"
+                                Mode="TwoWay"
+                                UpdateSourceTrigger="PropertyChanged" />
+                    </ComboBox.SelectedItem>
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+            </StackPanel>
+
+
+ 
+
+
+        
+
 
         </Grid>
 
@@ -222,8 +155,9 @@
 
 
             <Viewbox Grid.Column="1" Stretch="Fill">
-                <Grid Grid.Column="1">
+                <Grid>
                     <Button
+                        Command="{Binding StartTheGame}"
                         BorderThickness="2px"
                         VerticalAlignment="Stretch"
                         Width="250px"
@@ -238,13 +172,60 @@
                         </Button.Background>
                         <TextBlock Foreground="AntiqueWhite" FontSize="20px"
                                    TextAlignment="Center"
-                                   Text="Начать игру" />
+                                   Text="{DynamicResource StartGame}" />
 
 
                     </Button>
                 </Grid>
             </Viewbox>
 
+            <StackPanel Grid.Column="2" Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right"
+                        VerticalAlignment="Center">
+                <ToggleButton
+                    Width="80"
+                    Height="80"
+                    Margin="10 0 0 0"
+                    Style="{StaticResource MaterialDesignActionToggleButton}"
+                    Command="{Binding ChangeLanguage}"
+                    IsChecked="{Binding LanguageChecked,Mode=TwoWay}"
+                    ToolTip="MaterialDesignActionLightToggleButton">
+                    <materialDesign:ToggleButtonAssist.OnContent>
+                        <Image Source="../../Resources/Images/united-kingdom.png" />
+                    </materialDesign:ToggleButtonAssist.OnContent>
+                    <ToggleButton.Content>
+                        <Image Source="../../Resources/Images/russia.png" />
+                    </ToggleButton.Content>
+                </ToggleButton>
+                <ToggleButton
+                    Margin="10 0 0 0"
+                    Width="80"
+                    Height="80"
+                    Style="{StaticResource MaterialDesignActionToggleButton}"
+                    Command="{Binding SwitchVolume}"
+                    IsChecked="{Binding VolumeChecked,Mode=TwoWay}"
+                    ToolTip="MaterialDesignActionLightToggleButton">
+                    <materialDesign:ToggleButtonAssist.OnContent>
+                        <Image Source="../../Resources/Images/SoundOff.png" />
+                    </materialDesign:ToggleButtonAssist.OnContent>
+                    <ToggleButton.Content>
+                        <Image Source="../../Resources/Images/SoundOn.jpg" />
+                    </ToggleButton.Content>
+                </ToggleButton>
+
+
+                <Button
+                    materialDesign:ColorZoneAssist.Background="Transparent"
+                    Command="{Binding OpenMainMenu}"
+                    Width="80"
+                    Height="80"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                    HorizontalAlignment="Left"
+                       >
+                    <Image Source="../../Resources/Images/MainMenu.png" />
+                </Button>
+
+
+            </StackPanel>
 
         </Grid>
 

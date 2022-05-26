@@ -2,26 +2,17 @@
 
 namespace HexGridHelpers
 {
-    public struct IntSize: IEquatable<IntSize>
+    public struct IntSize : IEquatable<IntSize>
     {
-        private readonly int _width;
-        private readonly int _height;
-
         public IntSize(int width, int height)
         {
-            _width = width;
-            _height = height;
+            Width = width;
+            Height = height;
         }
 
-        public int Width
-        {
-            get { return _width; }
-        }
+        public int Width { get; }
 
-        public int Height
-        {
-            get { return _height; }
-        }
+        public int Height { get; }
 
         public static bool operator ==(IntSize a, IntSize b)
         {

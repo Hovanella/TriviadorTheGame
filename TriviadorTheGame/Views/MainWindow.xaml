@@ -3,22 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:TriviadorTheGame.Views"
         xmlns:viewModels="clr-namespace:TriviadorTheGame.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         WindowState="Maximized"
         WindowStyle="None"
-        >
- 
-        <Window.DataContext>
-               <viewModels:MainWindowViewModel></viewModels:MainWindowViewModel>
-        </Window.DataContext>
+        FontFamily="{StaticResource Medieval}">
 
-    
-        <Frame NavigationUIVisibility="Hidden"  Name="MainFrame" Content="{Binding CurrentPage  }" Background="Transparent" >
-        
-        </Frame>
-        
-        
+    <Window.DataContext>
+        <viewModels:MainWindowViewModel />
+    </Window.DataContext>
+
+
+    <Frame NavigationUIVisibility="Hidden" Name="MainFrame" Content="{Binding CurrentPage  }" Background="Transparent" />
+
+
 </Window>

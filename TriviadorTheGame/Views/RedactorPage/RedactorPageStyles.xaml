@@ -1,8 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes">
 
-     <Style x:Key="MaterialTabChanged" TargetType="{x:Type TabControl}">
-        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
+    <Style x:Key="MaterialTabChanged" TargetType="{x:Type TabControl}">
+        <Setter Property="Foreground"
+                Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="Padding" Value="0" />
@@ -23,8 +25,11 @@
                             Focusable="False">
                             <wpf:ColorZone
                                 VerticalAlignment="Stretch"
-                                Background="{TemplateBinding wpf:ColorZoneAssist.Background}"
                                 Focusable="False">
+                                <wpf:ColorZone.Background>
+                                    <ImageBrush
+                                        ImageSource="../../Resources/Images/старая-средневековая-текстура-каменной-стены-каменная-форта-143380597.jpg" />
+                                </wpf:ColorZone.Background>
                                 <ScrollViewer
                                     wpf:ScrollViewerAssist.SupportHorizontalScroll="True"
                                     HorizontalScrollBarVisibility="Hidden"
@@ -50,15 +55,14 @@
                                 </ScrollViewer>
                             </wpf:ColorZone>
                         </wpf:Card>
-                   
+
                         <Border
                             x:Name="PART_BorderSelectedContent"
                             Padding="{TemplateBinding Padding}"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
-                            Background="{x:Null}"
-                            >
-                         
+                            Background="{x:Null}">
+
                             <ContentPresenter
                                 x:Name="PART_SelectedContentHost"
                                 Margin="{TemplateBinding Padding}"
@@ -70,9 +74,9 @@
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                 TextBlock.Foreground="{Binding ElementName=PART_HeaderCard, Path=Foreground}"
                                 TextElement.Foreground="{Binding ElementName=PART_HeaderCard, Path=Foreground}" />
-                          
+
                         </Border>
-                  
+
                     </DockPanel>
 
                     <ControlTemplate.Triggers>
@@ -115,5 +119,4 @@
     </Style>
 
 
-    
 </ResourceDictionary>

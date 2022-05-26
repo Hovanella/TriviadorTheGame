@@ -1,0 +1,105 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    
+    <!--LoggingPage-->
+    <system:String x:Key="Welcome">Добро Пожаловать в Тривиадор! Испытайте свои знания , навыки и стратегию!</system:String>
+    <system:String x:Key="SignUp">Регистрация</system:String>
+    <system:String x:Key="SignIn">Вход</system:String>
+    <system:String x:Key="Login">Логин</system:String>
+    <system:String x:Key="Password">Пароль</system:String>
+    <system:String x:Key="ConfirmPassword">Подтвердить пароль</system:String>
+    <system:String x:Key="Confirm">Подтвердить</system:String>
+    <system:String x:Key="FillFieldsMessage">Пожалуйста, поля пустыми не оставьте</system:String>
+    <system:String x:Key="UserExistsMessage">Пользователь с таким логином уже существует</system:String>
+    <system:String x:Key="PasswordsNotEqualMessage">Пароли не совпадают</system:String>
+    <system:String x:Key="IncorrectLoginMessage">Неверный логин</system:String>
+    <system:String x:Key="IncorrectPasswordMessage">Неверный пароль</system:String>
+    <!--/LoggingPage-->
+    
+    
+    <!--MainMenu-->
+    
+    <system:String x:Key="AdminTooltip">Вы администратор</system:String>
+    <system:String x:Key="ClientTooltip">Вы клиент</system:String>
+    <system:String x:Key="StartGame">Начать игру</system:String>
+    <system:String x:Key="GameRedactor">Игровой редактор</system:String>
+    <system:String x:Key="UserStatistics">Статистика пользователей</system:String>
+    <system:String x:Key="QuestionArchive">Архив вопросов</system:String>
+    <system:String x:Key="ChangeAccount">Сменить профиль</system:String>
+    <system:String x:Key="Exit">Выйти из игры</system:String>
+    
+    
+    <!--/MainMenu-->
+    
+       
+    <!--Archive-->
+    <system:String x:Key="QuestionText">Текст вопроса</system:String>
+    <system:String x:Key="RightAnswer">Правильный ответ</system:String>
+    <system:String x:Key="FirstWrongAnswer">Первый неправильный ответ</system:String>
+    <system:String x:Key="SecondWrongAnswer">Второй неправильный ответ</system:String>
+    <system:String x:Key="ThirdWrongAnswer">Третий неправильный ответ</system:String>
+    <system:String x:Key="Search">Поиск</system:String>
+    <system:String x:Key="EditQuestion">Редактировать вопрос</system:String>
+    <system:String x:Key="CreateQuestion">Создать вопрос</system:String>
+    <system:String x:Key="DeleteQuestion">Удалить выбранный вопрос</system:String>
+     <system:String x:Key="AllQuestions">Все вопросы</system:String>
+    <system:String x:Key="MyQuestions">Мои вопросы</system:String>
+    <!--/Archive-->
+    
+    <!--RedactorPage-->
+    <system:String x:Key="MyPacks">Мои наборы</system:String>
+    <system:String x:Key="ChoosePack">Выбрать набор</system:String>
+    <system:String x:Key="ChooseQuestion">Выбрать вопрос</system:String>
+    <system:String x:Key="PackName">Название набора</system:String>
+    <system:String x:Key="AllPacks">Все наборы</system:String>
+    <system:String x:Key="ByPackName">По названию набора</system:String>
+    <system:String x:Key="ByQuestion">По вопросу</system:String>
+    <system:String x:Key="EditPack">Изменить название набора</system:String>
+    <system:String x:Key="AddQuestionFromArchive">Добавить вопрос из архива</system:String>
+    <system:String x:Key="CreatePack">Создать набор</system:String>
+    <system:String x:Key="DeleteSelectedPack">Удалить выбранный набор</system:String>
+    <system:String x:Key="DeleteSelectedQuestion">Удалить выбранный вопрос</system:String>
+    <!--/RedactorPage-->
+    
+    <!--UserStatisticsPage-->
+    
+    <system:String x:Key="EditSelectedUser">Редактировать пользователя</system:String>
+    <system:String x:Key="ScoreNumber">Количество очков</system:String>
+    <system:String x:Key="GamesNumber">Количество игр</system:String>
+    <system:String x:Key="ChangePasswordAndLogin">Изменить свой пароль и логин</system:String>
+    <system:String x:Key="IncorrectNumberData">Некорректные числовые данные</system:String>
+    <system:String x:Key="UserRole">Роль</system:String>
+    <system:String x:Key="DeleteSelectedUser">Удалить выбранного пользователя</system:String>
+    <!--/UserStatisticsPage-->
+    
+    <!--GameLobbyPage-->
+    <system:String x:Key="PackForGame">Набор для игры</system:String>
+    <system:String x:Key="ChooseRoundsNumber">Выберите количество раундов</system:String>
+    <system:String x:Key="MustSelectTwoFriends">Вы должны выбрать ещё двух пользователей для игры</system:String>
+    <system:String x:Key="PlayerAlreadyInLobby">Игрок уже в лобби</system:String>
+    <system:String x:Key="UserJoin">Игрок вошёл в игру</system:String>
+    <!--/GameLobbyPage-->
+    
+    
+    <!--GamePage-->
+    <system:String x:Key="GameStarted">Игра началась</system:String>
+    <system:String x:Key="Player">Игрок</system:String>
+    <system:String x:Key="Players">Игроки</system:String>
+    <system:String x:Key="CapturedCell">захватил клетку</system:String>
+    <system:String x:Key="DefendedCell">защитил клетку</system:String>
+    <system:String x:Key="Didntpickawinner">победителя не определиили</system:String>
+    <system:String x:Key="Foreveryone">для каждого</system:String>
+    <system:String x:Key="Battleforcell">Битва за клетку</system:String>
+    <system:String x:Key="WasBad">Была ужасна</system:String>
+    <system:String x:Key="Andget">и получил</system:String>
+    <system:String x:Key="Points">очков</system:String>
+    <system:String x:Key="GameFinished">Игра закончена</system:String>
+    <system:String x:Key="CapturedAllCells">захватили все клетки!</system:String>
+    <system:String x:Key="Red">Красный</system:String>
+    <system:String x:Key="Blue">Синий</system:String>
+    <system:String x:Key="Green">Зелёный</system:String>
+    <system:String x:Key="WonByPoints">выигрывают по очкам!</system:String>
+    <system:String x:Key="NoWinner">Победителя нет!</system:String>
+    <system:String x:Key="Round">Раунд</system:String>
+</ResourceDictionary>

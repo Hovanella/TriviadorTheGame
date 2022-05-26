@@ -4,16 +4,16 @@
     <Style TargetType="Button" x:Key="MainMenuButton">
         <Style.Resources>
             <Style TargetType="Border">
-                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="CornerRadius" Value="0" />
             </Style>
-            
+
         </Style.Resources>
     </Style>
 
     <Style x:Key="MainMenuButtonFocus">
-        <Setter Property="Control.Background" Value="Red"></Setter>
+        <Setter Property="Control.Background" Value="Red" />
 
     </Style>
-    
+
 
 </ResourceDictionary>

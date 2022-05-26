@@ -18,8 +18,7 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="../../Resources/Images/1593821081_3-p-srednevekovie-foni-3.jpg" Opacity="0.8">
-            </ImageBrush>
+            <ImageBrush ImageSource="../../Resources/Images/1593821081_3-p-srednevekovie-foni-3.jpg" Opacity="0.8" />
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="271*" />
@@ -31,9 +30,9 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <Image Grid.Row="0" Source="../../Resources/Images/i.webp" Stretch="Fill" Grid.ColumnSpan="2"></Image>
+        <Image Grid.Row="0" Source="../../Resources/Images/i.webp" Stretch="Fill" Grid.ColumnSpan="2" />
 
-        <Image Grid.Row="2" Source="../../Resources/Images/i.webp" Stretch="Fill" Grid.ColumnSpan="2"></Image>
+        <Image Grid.Row="2" Source="../../Resources/Images/i.webp" Stretch="Fill" Grid.ColumnSpan="2" />
 
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
 
@@ -62,9 +61,9 @@
 
                         <TextBlock TextTrimming="WordEllipsis" MaxWidth="300px" x:Name="WelcomeBlock"
                                    VerticalAlignment="Stretch"
-                                   FontSize="20px" HorizontalAlignment="Stretch" Grid.Row="0" TextWrapping="Wrap"
+                                   FontSize="20px" HorizontalAlignment="Stretch" TextWrapping="Wrap"
                                    TextAlignment="Justify" Padding="5px" Background="AntiqueWhite"
-                                   Text="Добро Пожаловать в Тривиадор! Испытайте свои знания , навыки и стратегию!" />
+                                   Text="{DynamicResource Welcome}" />
 
 
                     </Viewbox>
@@ -72,59 +71,51 @@
 
 
                 <Viewbox Grid.Row="1">
-                    <Image Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Stretch"
-                           Source="../../Resources/Images/kisspng-royalty-free-stock-photography-clip-art-5ae4fc27ab2ee7.2109463115249561997012.png">
-                    </Image>
+                    <Image HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                           Source="../../Resources/Images/kisspng-royalty-free-stock-photography-clip-art-5ae4fc27ab2ee7.2109463115249561997012.png" />
                 </Viewbox>
 
 
             </Grid>
 
             <Viewbox Grid.Column="2">
-                <StackPanel Margin="20 0 10 0" Background="Transparent" Grid.Column="2" HorizontalAlignment="Center"
+                <StackPanel Margin="20 0 10 0" Background="Transparent" HorizontalAlignment="Center"
                             VerticalAlignment="Center">
 
 
                     <ToggleButton
                         Style="{StaticResource MaterialDesignActionToggleButton}"
                         ToolTip="MaterialDesignActionLightToggleButton"
-                        Content="Регистрация"
+                        Content="{DynamicResource SignUp}"
                         IsChecked="{Binding IsRegistered, Mode=TwoWay}"
                         Width="150px"
                         Background="AntiqueWhite"
                         Click="ToggleButton_OnChecked"
-                        materialDesign:ToggleButtonAssist.OnContent="Вход"
+                        materialDesign:ToggleButtonAssist.OnContent="{DynamicResource SignIn}"
                         FontSize="25px"
                         Foreground="Black"
                         Margin="0 20 0 0 " />
 
-                    <TextBlock VerticalAlignment="Stretch" Background="Transparent" FontSize="30px" Text="Login">
-                        
-                    </TextBlock>
+                    <TextBlock VerticalAlignment="Stretch" Background="Transparent" FontSize="30px" Text="{DynamicResource Login}" />
 
-                    <TextBox Text="{Binding Login, Mode=TwoWay}" Width="200px" FontSize="20px" Height="30px"
-                             Background="AntiqueWhite">
-
-                    </TextBox>
+                    <TextBox   materialDesign:TextFieldAssist.UnderlineBrush="#8e6847"
+                               Text="{Binding Login, Mode=TwoWay}" Width="200px" FontSize="20px" Height="30px"
+                               Background="AntiqueWhite" />
 
                     <TextBlock Background="Transparent" FontSize="30px"
-                               Text="Password">
-                    </TextBlock>
+                               Text="{DynamicResource Password}" />
 
-                    <TextBox Text="{Binding Password, Mode=TwoWay}" Width="200px" FontSize="20px" Height="30px"
-                             Background="AntiqueWhite">
-                    </TextBox>
+                    <TextBox   materialDesign:TextFieldAssist.UnderlineBrush="#8e6847" Text="{Binding Password, Mode=TwoWay}" Width="200px" FontSize="20px" Height="30px"
+                               Background="AntiqueWhite" />
 
 
                     <TextBlock x:Name="ConfirmPasswordTextBlock" FontFamily="{StaticResource Medieval}"
                                Background="Transparent" FontSize="30px"
-                               Text="Confirm Password">
-                    </TextBlock>
+                               Text="{DynamicResource ConfirmPassword}" />
 
-                    <TextBox Text="{Binding ConfirmPassword, Mode=TwoWay}" Width="200px"
-                             x:Name="ConfirmPasswordTextBox" FontSize="20px" Height="30px"
-                             Background="AntiqueWhite">
-                    </TextBox>
+                    <TextBox   materialDesign:TextFieldAssist.UnderlineBrush="#8e6847" Text="{Binding ConfirmPassword, Mode=TwoWay}" Width="200px"
+                               x:Name="ConfirmPasswordTextBox" FontSize="20px" Height="30px"
+                               Background="AntiqueWhite" />
 
 
                     <Grid VerticalAlignment="Stretch" Margin="0 20 0 0 ">
@@ -134,7 +125,7 @@
                                 Style="{StaticResource MaterialDesignRaisedLightButton}">
                             <TextBlock
                                 FontSize="35px"
-                                Text="Confirm" />
+                                Text="{DynamicResource Confirm}" />
                         </Button>
                     </Grid>
 
@@ -143,6 +134,35 @@
             </Viewbox>
 
 
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="282*"/>
+                <ColumnDefinition Width="247*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal"  HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+                
+                <ToggleButton
+                        Margin="0 0 180 0"
+                        Width="80"
+                        Height="80"
+                        Style="{StaticResource MaterialDesignActionToggleButton}"
+                        Command="{Binding ChangeLanguage}"
+                        IsChecked="{Binding LanguageChecked,Mode=TwoWay}"
+                        ToolTip="MaterialDesignActionLightToggleButton">
+                    <materialDesign:ToggleButtonAssist.OnContent>
+                        <Image Source="../../Resources/Images/united-kingdom.png" />
+                    </materialDesign:ToggleButtonAssist.OnContent>
+                    <ToggleButton.Content>
+                        <Image Source="../../Resources/Images/russia.png" />
+                    </ToggleButton.Content>
+                </ToggleButton>
+          
+
+
+            </StackPanel>
         </Grid>
 
 
