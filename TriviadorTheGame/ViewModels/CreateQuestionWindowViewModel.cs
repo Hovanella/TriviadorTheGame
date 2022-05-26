@@ -70,7 +70,7 @@ namespace TriviadorTheGame.ViewModels
            
             CloseCreatePackWindowCommand = new RelayCommand(() =>
             {
-                ModelViewManager.RedactorViewModel.CloseCreatePackWindow();
+                ModelViewManager.RedactorViewModel.CloseCreateQuestionWindow();
             });
             
         }
